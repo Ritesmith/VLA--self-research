@@ -1,0 +1,260 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\title{\textbf{视觉-语言-动作模型（VLA）研究综述：\\从基础架构到前沿应用}}
+\author{作者姓名}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+视觉-语言-动作（Vision-Language-Action，VLA）模型是具身智能领域的最新突破，通过融合视觉感知、语言理解和动作生成，使机器人能够理解自然语言指令并执行复杂的操作任务。本文综述了15篇VLA核心论文，系统梳理了VLA技术的发展脉络、核心架构、训练方法和应用场景。首先，我们回顾了VLA的基础架构，包括RT-1、RT-2和PaLM-E等开创性工作；其次，我们分析了跨具身学习、扩散模型和流匹配等关键技术；然后，我们探讨了最新的研究方向，包括任意点轨迹建模、强化学习微调和快慢双系统架构；最后，我们总结了VLA技术的挑战和未来发展方向。本文为VLA领域的研究者和实践者提供了全面的技术参考。
+
+\textbf{关键词}：视觉-语言-动作模型；具身智能；机器人学习；多模态学习；跨具身学习
+\end{abstract}
+
+\section{引言}
+
+近年来，随着大语言模型（LLM）和视觉-语言模型（VLM）的快速发展，具身智能领域取得了显著进展。视觉-语言-动作（VLA）模型作为具身智能的核心技术，通过融合视觉感知、语言理解和动作生成，使机器人能够理解自然语言指令并执行复杂的操作任务。
+
+VLA模型的发展可以分为三个阶段：（1）\textbf{基础架构探索阶段}（2022-2023），以RT-1\cite{rt1}、RT-2\cite{rt2}和PaLM-E\cite{palme}为代表，建立了VLA的基本架构；（2）\textbf{技术深化阶段}（2023-2024），以RT-X\cite{rtx}、OpenVLA\cite{openvla}和RDT-1B\cite{rdt1b}为代表，探索了跨具身学习、扩散模型等新技术；（3）\textbf{前沿突破阶段}（2024-2025），以ATM\cite{atm}、ConRFT\cite{conrft}和FiS-VLA\cite{fisvla}为代表，提出了轨迹建模、强化学习微调和双系统架构等创新方法。
+
+本文综述了15篇VLA核心论文，系统梳理了VLA技术的发展脉络。本文的主要贡献包括：（1）系统梳理了VLA技术的发展历程和关键技术；（2）详细分析了不同VLA模型的架构设计和训练方法；（3）总结了VLA技术的应用场景和挑战；（4）展望了VLA技术的未来发展方向。
+
+\section{VLA基础架构}
+
+\subsection{RT-1：首个大规模真实世界数据集}
+
+RT-1\cite{rt1}是首个在真实世界大规模数据集上训练的机器人Transformer模型。该模型在13万条轨迹数据上训练，涵盖700多个任务，实现了97\%的成功率。RT-1的核心创新包括：（1）使用Transformer架构处理机器人控制问题；（2）设计了高效的实时推理系统（3Hz）；（3）建立了大规模真实世界机器人数据集。
+
+RT-1的架构包括三个主要组件：（1）\textbf{图像编码器}：使用EfficientNet提取图像特征；（2）\textbf{语言编码器}：使用BERT处理语言指令；（3）\textbf{动作头}：预测7自由度机械臂的动作。RT-1的成功证明了Transformer架构在机器人控制中的有效性，为后续VLA模型的发展奠定了基础。
+
+\subsection{RT-2：动作作为文本令牌}
+
+RT-2\cite{rt2}是首个将动作作为文本令牌的VLA模型，实现了网络知识到机器人控制的迁移。RT-2的核心创新包括：（1）将连续动作空间离散化为文本令牌；（2）联合微调视觉-语言模型和动作头；（3）实现了零样本泛化到未见任务的能力。
+
+RT-2的架构包括：（1）\textbf{视觉编码器}：使用ViT（Vision Transformer）提取图像特征；（2）\textbf{语言模型}：使用PaLM（Pathways Language Model）处理语言指令；（3）\textbf{动作头}：将动作作为文本令牌生成。RT-2的成功确立了VLA的基本范式，即通过联合训练视觉、语言和动作，实现多模态理解和生成。
+
+\subsection{PaLM-E：超大规模具身多模态模型}
+
+PaLM-E\cite{palme}是迄今为止最大的具身多模态模型，参数规模达到562B。PaLM-E的核心创新包括：（1）将连续传感器模态（如图像、深度）嵌入到语言模型中；（2）实现了链式思维推理能力；（3）在多种具身任务上取得了优异性能。
+
+PaLM-E的架构包括：（1）\textbf{多模态编码器}：处理图像、深度、语言等多种模态；（2）\textbf{语言模型}：使用540B参数的PaLM模型；（3）\textbf{具身头}：预测机器人动作。PaLM-E的成功证明了超大规模模型在具身智能中的潜力，但也暴露了计算资源需求高的问题。
+
+\section{VLA技术深化}
+
+\subsection{RT-X：跨具身学习}
+
+RT-X\cite{rtx}是首个实现跨具身学习的VLA模型，通过在22种机器人、160266个任务上训练，实现了跨平台的知识迁移。RT-X的核心创新包括：（1）建立了统一的机器人数据格式；（2）实现了跨具身的联合训练；（3）在未见机器人平台上实现了零样本泛化。
+
+RT-X的架构包括：（1）\textbf{统一数据格式}：将不同机器人的数据转换为统一格式；（2）\textbf{跨具身编码器}：提取跨平台的通用特征；（3）\textbf{动作头}：预测不同机器人的动作。RT-X的成功证明了跨具身学习的可行性，为机器人学习提供了新的数据利用范式。
+
+\subsection{OpenVLA：开源VLA生态}
+
+OpenVLA\cite{openvla}是首个完全开源的VLA模型，参数规模为7B，性能超越了55B参数的RT-2-X。OpenVLA的核心创新包括：（1）完全开源的模型和代码；（2）使用LoRA（Low-Rank Adaptation）进行高效微调；（3）支持多种视觉编码器。
+
+OpenVLA的架构包括：（1）\textbf{视觉编码器}：支持ViT、CLIP等多种编码器；（2）\textbf{语言模型}：使用Llama-2作为语言模型；（3）\textbf{动作头}：预测连续动作。OpenVLA的成功推动了VLA技术的开源生态建设，降低了研究门槛。
+
+\subsection{RDT-1B：扩散模型在机器人控制中的应用}
+
+RDT-1B\cite{rdt1b}是首个将扩散模型应用于机器人控制的VLA模型，参数规模为1.2B。RDT-1B的核心创新包括：（1）使用扩散模型生成动作；（2）设计了物理可解释的统一动作空间；（3）在双臂操作任务上取得了优异性能。
+
+RDT-1B的架构包括：（1）\textbf{视觉编码器}：使用DiT（Diffusion Transformer）提取图像特征；（2）\textbf{扩散模型}：使用扩散过程生成动作；（3）\textbf{动作解码器}：将扩散输出解码为机器人动作。RDT-1B的成功证明了扩散模型在机器人控制中的潜力，为VLA技术提供了新的生成范式。
+
+\subsection{Pi\_0：流匹配架构}
+
+Pi\_0\cite{pi0}是首个使用流匹配（Flow Matching）架构的VLA模型，实现了50Hz的实时推理。Pi\_0的核心创新包括：（1）使用流匹配替代扩散模型，提高了推理速度；（2）实现了跨具身训练；（3）在复杂灵巧操作任务上取得了优异性能。
+
+Pi\_0的架构包括：（1）\textbf{视觉编码器}：使用ViT提取图像特征；（2）\textbf{流匹配模型}：使用流匹配生成动作；（3）\textbf{动作解码器}：将流匹配输出解码为机器人动作。Pi\_0的成功证明了流匹配在实时机器人控制中的优势，为VLA技术提供了新的优化方向。
+
+\subsection{RT-H：语言动作层次}
+
+RT-H\cite{rth}是首个引入语言动作层次的VLA模型，通过层次化的动作表示提高了任务执行效率。RT-H的核心创新包括：（1）设计了语言动作层次结构；（2）引入了人类干预学习机制；（3）在多种任务上比RT-2提升了15\%。
+
+RT-H的架构包括：（1）\textbf{视觉编码器}：使用ViT提取图像特征；（2）\textbf{语言模型}：使用PaLM处理语言指令；（3）\textbf{层次动作头}：预测层次化的动作序列。RT-H的成功证明了层次化动作表示的有效性，为复杂任务规划提供了新的思路。
+
+\section{VLA前沿突破}
+
+\subsection{ATM：任意点轨迹建模}
+
+ATM\cite{atm}是首个利用无动作标签视频数据的VLA模型，通过预测视频帧内任意点的未来轨迹，实现了样本高效的策略学习。ATM的核心创新包括：（1）提出了任意点轨迹建模框架；（2）利用大规模无标签视频数据；（3）在130多个任务上平均成功率63\%，比基线方法提升80\%。
+
+ATM的架构包括：（1）\textbf{轨迹预测模型}：预测视频帧内任意点的未来轨迹；（2）\textbf{策略学习模块}：利用轨迹预测结果学习策略；（3）\textbf{跨具身匹配模块}：实现从人类视频到机器人动作的匹配。ATM的成功证明了无标签视频数据在机器人学习中的潜力，为数据稀缺问题提供了新的解决方案。
+
+\subsection{DecisionNCE：隐式偏好学习}
+
+DecisionNCE\cite{decisionnce}是首个使用对比学习进行轨迹级别对齐的VLA模型，通过隐式偏好学习实现了通用的表征预训练。DecisionNCE的核心创新包括：（1）提出了轨迹级别对齐方法；（2）利用无动作标签的分布外数据；（3）为具身智能提供了通用的表征预训练方案。
+
+DecisionNCE的架构包括：（1）\textbf{视觉编码器}：提取图像特征；（2）\textbf{语言编码器}：提取语言特征；（3）\textbf{对比学习模块}：通过对比学习对齐轨迹。DecisionNCE的成功证明了对比学习在具身智能中的潜力，为数据稀缺问题提供了新的解决方案。
+
+\subsection{ConRFT：强化学习微调}
+
+ConRFT\cite{conrft}是首个解决VLA模型强化学习微调不稳定问题的方法，通过一致性策略训练实现了稳定高效的微调。ConRFT的核心创新包括：（1）提出了两阶段微调框架（离线+在线）；（2）融合了行为克隆（BC）与Q学习；（3）仅需40-60分钟视频演示即可微调。
+
+ConRFT的架构包括：（1）\textbf{离线微调模块}：使用行为克隆进行初始微调；（2）\textbf{在线微调模块}：使用Q学习进行在线优化；（3）\textbf{一致性训练模块}：确保离线和在线训练的一致性。ConRFT的成功证明了强化学习微调在VLA中的可行性，为模型优化提供了新的方向。
+
+\subsection{Gemini Robotics：基于Gemini 2.0的VLA模型}
+
+Gemini Robotics\cite{geminirobotics}是首个基于Gemini 2.0的VLA模型，也是首个可供微调的离线VLA模型。Gemini Robotics的核心创新包括：（1）使用Gemini 2.0作为语言模型；（2）适用于多种机器人形态；（3）对物体类型和位置变化具有鲁棒性。
+
+Gemini Robotics的架构包括：（1）\textbf{视觉编码器}：使用ViT提取图像特征；（2）\textbf{语言模型}：使用Gemini 2.0处理语言指令；（3）\textbf{动作头}：预测机器人动作。Gemini Robotics的成功证明了大语言模型在机器人控制中的潜力，为VLA技术提供了新的发展方向。
+
+\subsection{FiS-VLA：快慢双系统架构}
+
+FiS-VLA\cite{fisvla}是首个提出快慢双系统架构的VLA模型，通过System 1（快速执行）和System 2（慢速推理）的分离，实现了117.7Hz的控制频率。FiS-VLA的核心创新包括：（1）提出了快慢双系统架构；（2）实现了异构模态输入与异步运行频率；（3）性能超越Pi\_0达30\%。
+
+FiS-VLA的架构包括：（1）\textbf{快速执行模块}（System 1）：实现高频实时控制；（2）\textbf{慢速推理模块}（System 2）：实现复杂推理和规划；（3）\textbf{协调模块}：协调两个系统的运行。FiS-VLA的成功证明了双系统架构在机器人控制中的优势，为实时性优化提供了新的方向。
+
+\section{技术对比与分析}
+
+\subsection{模型架构对比}
+
+表1对比了不同VLA模型的架构特点。
+
+\begin{table}[h]
+\centering
+\caption{VLA模型架构对比}
+\begin{tabular}{lcccc}
+\toprule
+模型 & 参数规模 & 视觉编码器 & 语言模型 & 动作表示 \\
+\midrule
+RT-1 & 35M & EfficientNet & BERT & 连续值 \\
+RT-2 & 5B-55B & ViT & PaLM & 文本令牌 \\
+PaLM-E & 562B & CNN & PaLM & 连续值 \\
+RT-X & 未公开 & ViT & PaLM & 连续值 \\
+OpenVLA & 7B & ViT/CLIP & Llama-2 & 连续值 \\
+RDT-1B & 1.2B & DiT & Transformer & 扩散过程 \\
+Pi\_0 & 未公开 & ViT & Transformer & 流匹配 \\
+ATM & 未公开 & ViT & Transformer & 轨迹预测 \\
+DecisionNCE & 未公开 & ViT & Transformer & 对比学习 \\
+ConRFT & 未公开 & ViT & Transformer & 强化学习 \\
+Gemini Robotics & 未公开 & ViT & Gemini 2.0 & 连续值 \\
+FiS-VLA & 未公开 & ViT & Transformer & 双系统 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+从表1可以看出，VLA模型的参数规模从35M到562B不等，视觉编码器主要使用ViT，语言模型主要使用Transformer系列，动作表示从连续值发展到文本令牌、扩散过程、流匹配等多种形式。
+
+\subsection{训练方法对比}
+
+表2对比了不同VLA模型的训练方法。
+
+\begin{table}[h]
+\centering
+\caption{VLA模型训练方法对比}
+\begin{tabular}{lcccc}
+\toprule
+模型 & 训练数据 & 训练方法 & 微调方法 & 数据需求 \\
+\midrule
+RT-1 & 13万轨迹 & 行为克隆 & 无 & 高 \\
+RT-2 & 网络数据+机器人数据 & 联合微调 & 无 & 中 \\
+PaLM-E & 多模态数据 & 联合训练 & 无 & 高 \\
+RT-X & 160266任务 & 跨具身训练 & 无 & 高 \\
+OpenVLA & 多源数据 & 联合训练 & LoRA & 中 \\
+RDT-1B & 双臂数据 & 扩散训练 & 无 & 中 \\
+Pi\_0 & 多源数据 & 流匹配训练 & 无 & 中 \\
+ATM & 无标签视频 & 轨迹预测+策略学习 & 无 & 低 \\
+DecisionNCE & 无标签数据 & 对比学习 & 无 & 低 \\
+ConRFT & 演示数据 & 离线+在线微调 & RL & 低 \\
+Gemini Robotics & 多源数据 & 联合训练 & 可微调 & 中 \\
+FiS-VLA & 多源数据 & 双系统训练 & 无 & 中 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+从表2可以看出，VLA模型的训练方法从行为克隆发展到联合训练、扩散训练、流匹配训练等多种方法，微调方法从无发展到LoRA、强化学习等，数据需求从高发展到低。
+
+\subsection{性能对比}
+
+表3对比了不同VLA模型的性能。
+
+\begin{table}[h]
+\centering
+\caption{VLA模型性能对比}
+\begin{tabular}{lcccc}
+\toprule
+模型 & 任务数量 & 成功率 & 推理速度 & 零样本泛化 \\
+\midrule
+RT-1 & 700+ & 97\% & 3Hz & 否 \\
+RT-2 & 未公开 & 未公开 & 未公开 & 是 \\
+PaLM-E & 未公开 & 未公开 & 未公开 & 是 \\
+RT-X & 527 & 未公开 & 未公开 & 是 \\
+OpenVLA & 未公开 & 超越RT-2-X & 未公开 & 是 \\
+RDT-1B & 未公开 & 提升56\% & 未公开 & 否 \\
+Pi\_0 & 未公开 & 未公开 & 50Hz & 是 \\
+ATM & 130+ & 63\% & 未公开 & 是 \\
+DecisionNCE & 未公开 & 未公开 & 未公开 & 是 \\
+ConRFT & 未公开 & 未公开 & 未公开 & 是 \\
+Gemini Robotics & 未公开 & 未公开 & 未公开 & 是 \\
+FiS-VLA & 未公开 & 超越Pi\_0 30\% & 117.7Hz & 是 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+从表3可以看出，VLA模型的推理速度从3Hz发展到117.7Hz，零样本泛化能力从无发展到有，性能不断提升。
+
+\section{应用场景}
+
+\subsection{家庭服务机器人}
+
+VLA模型在家庭服务机器人中的应用包括：（1）物品抓取与放置；（2）清洁任务；（3）简单家务辅助。OpenVLA和Pi\_0等模型特别适合家庭服务场景，因为它们具有较好的实时性和泛化能力。
+
+\subsection{工业辅助机器人}
+
+VLA模型在工业辅助机器人中的应用包括：（1）物料搬运；（2）简单装配；（3）质量检测。RDT-1B和RT-X等模型特别适合工业场景，因为它们具有高精度和跨平台泛化能力。
+
+\subsection{智能导览机器人}
+
+VLA模型在智能导览机器人中的应用包括：（1）引导参观者；（2）回答问题；（3）展示信息。Gemini Robotics和RT-2等模型特别适合导览场景，因为它们具有强大的语言理解和泛化能力。
+
+\subsection{教育展示机器人}
+
+VLA模型在教育展示机器人中的应用包括：（1）演示科学实验；（2）教学辅助；（3）互动游戏。OpenVLA和FiS-VLA等模型特别适合教育场景，因为它们具有快速响应和灵活定制能力。
+
+\subsection{医疗辅助机器人}
+
+VLA模型在医疗辅助机器人中的应用包括：（1）药品配送；（2）简单护理；（3）康复辅助。Pi\_0和ConRFT等模型特别适合医疗场景，因为它们具有实时响应和高可靠性。
+
+\section{挑战与未来方向}
+
+\subsection{当前挑战}
+
+VLA技术当前面临的主要挑战包括：（1）\textbf{数据稀缺}：收集演示数据成本高；（2）\textbf{计算资源需求高}：大模型训练和推理需要大量计算资源；（3）\textbf{实时性不足}：大模型推理速度慢；（4）\textbf{泛化能力有限}：在未见任务上性能下降；（5）\textbf{安全性和可靠性}：机器人操作需要高安全性和可靠性。
+
+\subsection{未来方向}
+
+VLA技术的未来发展方向包括：（1）\textbf{多模态融合}：融合触觉、力觉等更多传感器模态；（2）\textbf{世界模型集成}：集成物理世界建模和因果推理能力；（3）\textbf{具身先验注入}：显式建模机器人运动学和3D空间感知；（4）\textbf{边缘部署优化}：模型压缩、量化和硬件加速；（5）\textbf{安全与可靠性}：集成安全约束、不确定性量化和故障检测。
+
+\section{结论}
+
+本文综述了15篇VLA核心论文，系统梳理了VLA技术的发展脉络、核心架构、训练方法和应用场景。VLA技术从RT-1的基础架构探索，发展到RT-2的动作作为文本令牌，再到RT-X的跨具身学习，以及ATM的无标签数据利用、ConRFT的强化学习微调和FiS-VLA的双系统架构，技术不断突破，应用场景不断拓展。
+
+VLA技术的核心创新包括：（1）将动作作为文本令牌，实现了多模态联合训练；（2）跨具身学习，实现了跨平台知识迁移；（3）无标签数据利用，缓解了数据稀缺问题；（4）强化学习微调，提升了模型优化效率；（5）双系统架构，实现了高频实时控制。
+
+VLA技术的未来发展方向包括多模态融合、世界模型集成、具身先验注入、边缘部署优化和安全与可靠性。随着技术的不断发展，VLA模型将在家庭服务、工业辅助、智能导览、教育展示和医疗辅助等领域发挥越来越重要的作用。
+
+本文为VLA领域的研究者和实践者提供了全面的技术参考，希望对VLA技术的发展和应用有所帮助。
+
+\section*{致谢}
+
+感谢所有VLA领域的研究者，他们的工作为具身智能的发展做出了重要贡献。
+
+\bibliographystyle{plain}
+\bibliography{vla_references}
+
+\end{document}

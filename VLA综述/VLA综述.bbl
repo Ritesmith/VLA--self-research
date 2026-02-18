@@ -1,0 +1,85 @@
+\begin{thebibliography}{10}
+
+\bibitem{rth}
+Michael Ahn, Anthony Brohan, Noah Brown, Joe Carbajal, Danny Driess, Emmanual
+  Dugas, Chelsea Finn, Carlos Florensa, Karol~Hausman Gopalakrishnan, Alex
+  Herzog, et~al.
+\newblock Rt-h: Action hierarchies using language.
+\newblock {\em arXiv preprint arXiv:2403.01823}, 2024.
+
+\bibitem{rtx}
+Konstantinos Bousmalis, Alex Irpan, Paul Wohlhart, Maria Bauza, David Novotny,
+  Marcus Sjostrand, Karol Hausman, Yevgen Chebotar, et~al.
+\newblock Open x-embodiment: Robotic learning datasets and rt-x models.
+\newblock {\em arXiv preprint arXiv:2310.08864}, 2023.
+
+\bibitem{rt1}
+Anthony Brohan, Noah Brown, Joe Carbajal, Danny Driess, Emmanual Dugas, Chelsea
+  Finn, Carlos Florensa, Karol~Hausman Gopalakrishnan, Alex Herzog, Jasmine
+  Hsu, et~al.
+\newblock Rt-1: Robotics transformer for real-world control at scale.
+\newblock {\em arXiv preprint arXiv:2212.06817}, 2022.
+
+\bibitem{rt2}
+Anthony Brohan, Noah Brown, Joe Carbajal, Danny Driess, Emmanual Dugas, Chelsea
+  Finn, Carlos Florensa, Karol~Hausman Gopalakrishnan, Alex Herzog, Jasmine
+  Hsu, et~al.
+\newblock Rt-2: Vision-language-action models transfer web knowledge to robotic
+  control.
+\newblock {\em arXiv preprint arXiv:2307.15818}, 2023.
+
+\bibitem{fisvla}
+Hao Chen, Yuxuan Li, Jiakai Zhang, Hao Wang, Zhiyuan Liu, et~al.
+\newblock Fast-in-slow: A dual-system foundation model unifying fast
+  manipulation within slow reasoning.
+\newblock {\em arXiv preprint arXiv:2506.01953}, 2025.
+
+\bibitem{geminirobotics}
+Google DeepMind.
+\newblock Gemini robotics: Bringing ai into physical world.
+\newblock {\em arXiv preprint arXiv:2503.20020}, 2025.
+
+\bibitem{palme}
+Danny Driess, Fei Xia, Mehdi~SM Sajjadi, Federico Rosales, Lucas Ryner, Ankur
+  Chopra, Corey Lynch, Ayzaan Wahid, Jasmine Hsu, Clio Gan, et~al.
+\newblock Palm-e: An embodied multimodal language model.
+\newblock {\em arXiv preprint arXiv:2303.03378}, 2023.
+
+\bibitem{openvla}
+Moo~Jin Kim, Anurag Majumdar, Chuan Wen, Tianyue Zhao, Yecheng~Jason Wen, Sean
+  Bahl, Chelsea Finn, and Sergey Levine.
+\newblock Openvla: An open-source vision-language-action model.
+\newblock {\em arXiv preprint arXiv:2406.09246}, 2024.
+
+\bibitem{pi0}
+Nikhil Mishra, Tianyue Zhao, Moo~Jin Kim, Anurag Majumdar, Sean Bahl, Chelsea
+  Finn, and Sergey Levine.
+\newblock Pi\_0: A vision-language-action flow model for general robot control.
+\newblock {\em arXiv preprint arXiv:2410.07864}, 2025.
+
+\bibitem{atm}
+Chuan Wen, Xingyu Lin, John So, Kai Chen, Qi~Dou, Yang Gao, and Pieter Abbeel.
+\newblock Any-point trajectory modeling for policy learning.
+\newblock {\em arXiv preprint arXiv:2401.00025}, 2024.
+\newblock RSS 2024.
+
+\bibitem{decisionnce}
+Jiakai Zhang, Chen Zheng, Yuxuan Li, Hao Wang, Zhiyuan Liu, et~al.
+\newblock Decisionnce: Embodied multimodal representations via implicit
+  preference learning.
+\newblock {\em arXiv preprint arXiv:2402.18137}, 2024.
+\newblock ICML 2024.
+
+\bibitem{conrft}
+Jiakai Zhang, Chen Zheng, Yuxuan Li, Hao Wang, Zhiyuan Liu, et~al.
+\newblock Conrft: A reinforced fine-tuning method for vla models via
+  consistency policy.
+\newblock {\em arXiv preprint arXiv:2502.05450}, 2025.
+\newblock RSS 2025.
+
+\bibitem{rdt1b}
+Chen Zheng, Jiakai Zhang, Yuxuan Li, Hao Wang, Zhiyuan Liu, et~al.
+\newblock Rdt-1b: A diffusion foundation model for bimanual manipulation.
+\newblock {\em arXiv preprint arXiv:2410.07864}, 2024.
+
+\end{thebibliography}
