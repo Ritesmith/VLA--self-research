@@ -225,8 +225,10 @@
 - **机构**: 地平线（Horizon Robotics）
 
 ### 官方网址
+- **论文arXiv**: https://arxiv.org/abs/2602.12062
+- **GitHub仓库（核心算法）**: https://github.com/HorizonRobotics/RoboOrchardLab
+- **GitHub仓库（真机基础设施）**: https://github.com/HorizonRobotics/RoboOrchard
 - **开源公告**: 地平线HorizonRobotics公众号
-- **开源内容**: HoloBrain-0核心算法 + 完整基础设施RoboOrchard
 
 ### 核心特点
 - 首创在架构中显式注入"具身先验"
@@ -235,6 +237,11 @@
 - 具备统一的3D空间感知与跨本体控制能力
 - 灵活适配单机械臂、双机械臂、移动机器人等多种机器人形态
 - 应用场景：柔软衣物的灵巧折叠、未知物体的通用抓取
+- 轻量化GD版本（0.2B）可适配地平线RDKS100机器人开发者套件
+
+### 开源内容
+- HoloBrain-0核心算法（RoboOrchardLab）
+- 完整基础设施RoboOrchard（真机部署框架）
 
 ---
 
@@ -334,7 +341,12 @@
 - **机构**: 清华大学、加州大学伯克利分校、上海期智研究院
 
 ### 官方网址
-- **会议**: ICRA 2025
+- **会议**: ICRA 2025 (https://www.icra2025.org/)
+- **论文链接**: 待会议正式发布（ICRA 2025会议论文）
+- **arXiv链接**: 待补充（会议发表后可能发布）
+- **项目主页**: 待补充
+
+**注意**: https://arxiv.org/abs/2502.05450 是 ConRFT 的链接，不是 iRe-VLA。iRe-VLA 将在 ICRA 2025 会议正式发表。
 
 ### 核心特点
 - 解决VLA模型强化学习微调不稳定的问题
@@ -342,6 +354,39 @@
 - 解决灾难性遗忘问题
 - 降低计算资源需求
 - 让VLA模型能够通过真实环境互动（RL）自我提升
+
+### 学习重点
+- 稳定器（Stabilizer）机制
+- 渐进式RL微调策略
+- 预训练知识保持方法
+- 高效训练算法
+
+---
+
+## 1️⃣8️⃣ Genie2 (2024)
+
+### 基本信息
+- **标题**: Genie2 - Foundation World Model
+- **发表时间**: 2024年
+- **机构**: Google DeepMind
+
+### 官方网址
+- **项目网站**: https://deepmind.google/discover/blog/genie-2/
+- **论文PDF**: 待补充
+- **arXiv链接**: 待补充
+
+### 核心特点
+- 基础世界模型（Foundation World Model）
+- 从单张图像提示生成无限多样的可交互3D环境
+- 不仅是视频生成器，更是可玩的游戏引擎
+- 代理可以在其中通过键盘或动作交互
+- 为VLA提供世界建模能力
+
+### 学习重点
+- 世界模型构建方法
+- 可交互环境生成
+- 物理规律遵循机制
+- VLA预训练数据生成
 
 ---
 
