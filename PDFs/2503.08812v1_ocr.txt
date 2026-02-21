@@ -1,0 +1,1280 @@
+
+--- Page 1 ---
+Astronomy & Astrophysics manuscript no. aanda
+©ESO 2025
+March 13, 2025
+ASASSN-13dn: A Luminous and Double-Peaked Type II Supernova
+E. Hueichapán1, 2, J. L. Prieto1, 2, R. Cartier1, C. Contreras3, M. Bersten4, 5, 6, T. Moriya7, 8, 9, C. Kochanek10, 11, and B.
+J. Shappee12
+1 Instituto de Estudios Astrofísicos, Facultad de Ingeniería y Ciencias, Universidad Diego Portales, Avenida Ejercito Libertador
+441, Santiago, Chile.
+e-mail: emilio.hueichapan@mail.udp.cl
+2 Millennium Institute of Astrophysics MAS, Nuncio Monseñor Sotero Sanz 100, Off. 104, Providencia, Santiago, Chile.
+3 Carnegie Observatories, Las Campanas Observatory, Casilla 601, La Serena, Chile
+4 Instituto de Astrofísica de La Plata (IALP), CCT-CONICET-UNLP. Paseo del Bosque S/N, B1900FWA, La Plata, Argentina
+5 Facultad de Ciencias Astronomicas y Geofisicas, Universidad Nacional de La Plata, Instituto de Astrofisica de La Plata (IALP),
+CONICET, Paseo del Bosque SN, B1900FWA, La Plata, Argentina
+6 Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa,
+Chiba, 277-8583, Japan
+7 National Astronomical Observatory of Japan, National Institutes of Natural Sciences, 2-21-1 Osawa, Mitaka, Tokyo 181-8588,
+Japan
+8 Graduate Institute for Advanced Studies, SOKENDAI, 2-21-1 Osawa, Mitaka, Tokyo 181-8588, Japan
+9 School of Physics and Astronomy, Monash University, Clayton, Victoria 3800, Australia
+10 Department of Astronomy, The Ohio State University, 140 W 18th Avenue, Columbus, OH 43210, USA
+11 Center for Cosmology and AstroParticle Physics, 191 W Woodruff Avenue, Columbus, OH 43210, USA
+12 Institute for Astronomy, University of Hawaii, 2680 Woodlawn Drive, Honolulu, HI 96822, USA
+Received March 13, 2025
+ABSTRACT
+Aims. We present observations of ASASSN-13dn, one of the first supernovae discovered by ASAS-SN, and a new member of the rare
+group of Luminous Type II Supernovae (LSNe II). It was discovered near maximum light, reaching an absolute magnitude of Mv ∼
+-19 mag, placing this object between normal luminosity type II SNe and superluminous SNe
+Methods. A detailed analysis of the photometric and spectroscopic data of ASASSN-13dn is performed. The spectra are characterized
+by broad lines, in particular the Hα lines where we measure expansion velocities ranging between 14000 - 6000 km s−1 over the first
+100 days. Hα dominates the nebular spectra, and we detect a narrow P-Cygni absorption within the broader emission line with an
+expansion velocity of 1100 km s−1. Photometrically, its light curve shows a re-brightening of ∼0.6 mag in the gri bands starting at
+25±2 days after discovery, with a secondary peak at ∼73d, followed by an abrupt and nearly linear decay of 0.09 mag d−1 for the
+next 35 days. At later times, after a drop of 4 magnitudes from the second maximum, the light curves of ASASSN-13dn shows softer
+undulations from 125 to 175 days.
+Results. We compare ASASSN-13dn with other LSNe II in the literature, finding no match to both light curve and spectroscopic
+properties. We discuss the main powering mechanism and suggest that interaction between the ejecta and a dense CSM produced by
+eruptions from an LBV-like progenitor could potentially explain the observations.
+Key words. supernova: general - supernova: individual: ASASSN-13dn
+1. Introduction
+Core-collapse supernovae (CCSNe) are the explosive end of a
+massive star (MZAMS > 8 M⊙) (Filippenko 1997; Heger et al.
+2003). When the progenitor star retains its hydrogen envelope,
+the spectra are dominated by prominent Balmer lines from hy-
+drogen. These hydrogen-rich supernovae (SNe) are classified as
+type II SNe. Based on their photometric properties, type II SNe
+are usually classified into two major sub-classes: type II-P and
+II-L SNe (Barbon et al. 1979). If the light curve is characterized
+by a plateau of nearly constant luminosity after peak it is classi-
+fied as SN II-P. On the other hand, light curves characterized by
+a linear decay after its peak luminosity are classified as SN II-L.
+Nonetheless, recent studies have shown that a continuous dis-
+tribution better describes the wide variety of light curve shapes
+rather than two sub-classes (Anderson et al. 2014).
+The spectroscopic properties of type II SNe define two ad-
+ditional sub-classes: Type IIb and type IIn. Type IIb SNe are
+stripped envelope SNe that retain a fraction of their hydrogen
+envelopes at the time of the explosion (Filippenko et al. 1993).
+They exhibit strong hydrogen and helium lines at early phases,
+while hydrogen lines dissapear and helium lines dominate at
+later phases. Type IIn SNe are characterized by persistent nar-
+row emission lines with velocities < 1000 km/s, these narrow
+lines are produced by photoionized and unshocked circumstellar
+material (CSM, Schlegel 1990). The narrow lines are frequently
+found on top of a broad spectral feature which is produced by
+the shocked ejecta and CSM. The SN emission is dominated by
+the interaction between the SN ejecta and the dense CSM.
+The main powering mechanisms for regular type II SNe are
+the energy of the explosion deposited in the envelope during
+shock wave propagation and the decay of the radioactive ele-
+ments, mainly 56Ni, generated during explosive nucleosynthesis
+Article number, page 1 of 11
+arXiv:2503.08812v1  [astro-ph.SR]  11 Mar 2025
+
+
+--- Page 2 ---
+A&A proofs: manuscript no. aanda
+(Branch & Wheeler 2017). After the photospheric phase, where
+the energy deposited in the envelope is released by recombina-
+tion processes, the tail of the light curve is mainly powered by
+the energy deposition from the radioactive decay of 56Ni −→56Co
+−→56Fe. With full γ-ray trapping, the expected decline rate at the
+phase is 0.98 mag per 100 days (Woosley et al. 1989; Nadyozhin
+1994).
+In the last two decades, a new class of transient phenomena
+has been identified. While regular CCSNe have an absolute mag-
+nitude range between MV ∼−14 to −18.5 (Li et al. 2011), explo-
+sions showing peak absolute magnitude brighter than MV ≤−21
+mag were classified as Superluminous SNe (SLSNe, Quimby
+et al. 2011). However, this luminosity threshold is not definitive,
+De Cia et al. (2018) shows that SLSNe are a distinct spectro-
+scopic subclass sometimes overlapping in luminosity with the
+normal population of stripped-envelope SNe.
+Over the last few years, the luminosity gap between regu-
+lar CCSNe and SLSNe has been gradually populated by the so-
+called Luminous Supernovae (LSNe). With peak absolute mag-
+nitudes MV <∼−19, these objects appear to spectroscopically
+bridge the gap between regular CCSNe and SLSNe, suggest-
+ing a continuum in their spectroscopic properties (Gomez et al.
+2022; Nicholl 2021). While the discovery of type II supernovae
+within this luminosity range dates back several decades (e.g.,
+SN 1979C, Branch et al. 1981; SN 1998S, Liu et al. 2000;
+SN2003bg, Hamuy et al. 2009), it was not until Pessi et al.
+(2023) that these kinds of explosions were formally recognized
+as a subgroup of type II SNe. Their study found that this sub-
+group evolves more slowly than typical type II SNe, exhibiting
+broader emission lines and ejecta velocities of around v ∼10000
+km s−1.
+The light curves of CCSNe are generally characterized by
+a single peak. However, recent studies have increasingly iden-
+tified double or multi-peaked light curves, particularly among
+stripped-envelope SNe (Gutiérrez et al. 2021; Chen et al. 2023;
+Cartier et al. 2024). These findings challenge traditional mod-
+els and require the consideration of alternative powering mecha-
+nisms to account for the observations. Among the proposed cen-
+tral engine power sources are newly formed magnetars undergo-
+ing spin-down (Kasen & Bildsten 2010; Woosley 2010) and fall-
+back accretion onto a stellar-mass black-hole (Dexter & Kasen
+2013). These mechanisms have been invoked to explain extreme
+luminosities (Moriya et al. 2018), long-duration light curves (Ar-
+cavi et al. 2017), and distinct spectroscopic features observed
+in individual supernovae (e.g., Nicholl et al. 2018). Addition-
+ally, the hypothesis of a double nickel distribution in stripped-
+envelope supernovae (SESNe) has provided a successful expla-
+nation for the observed light curves (Orellana & Bersten 2022).
+Due to the limited number of well-characterized multiple-
+peaked type II SNe, there is insufficient consensus regarding the
+mechanisms responsible for their powering. The observed prop-
+erties, particularly the high luminosities, are difficult to recon-
+cile with the typical powering mechanisms, suggesting that ad-
+ditional mechanisms are likely required (Orellana et al. 2018).
+An example of this debate is iPTF14hls (Arcavi et al. 2017),
+a type II SNe with long, luminous, and multiple-peaked light
+curves showing no clear signatures of ejecta-CSM interaction
+in the spectra. No narrow emission lines were observed in this
+event and an equal increase in luminosity at all wavelengths
+discarded the ejecta-CSM interaction scenario. Fallback into a
+stellar-mass black-hole was adopted as the leading powering
+mechanism to explain the bumpy light curve (Arcavi et al. 2017).
+Dessart (2018) argue in favor of a magnetar-powered model to
+explain the observed properties of this SN.
+A LSNe II with a similar discussion is the case of ASASSN-
+15nx (Bose et al. 2018). The linearity of its light curve might
+indicate that it is powered purely by radioactive decay with a sig-
+nificant gamma-ray leakage factor, but the 56Ni mass necessary
+to explain the peak luminosity is too large for CCSNe (Müller
+et al. 2017). Chugai (2019) discuss the possibility of this SN be-
+ing powered by a magnetar after modeling the light curve and
+the [O i] 6300, 6364 Å doublet in late-time spectra.
+Typically, a standard SN II is understood as the explosive
+endpoint of a red supergiant (RSG), and many of their observed
+characteristics align with this scenario. However, Morozova
+et al. (2017) and Dessart & Hillier (2022) argue that the con-
+tinuum observed in light curve properties could be attributed to
+variations in CSM properties. In some cases, observed features
+such as the interaction of ejecta with fast-moving pre-explosion
+eruptions challenge the standard RSG scenario and suggest alter-
+native progenitor types, including LBV-like stars. This is exem-
+plified by events like SN 2009ip, a SN IIn, where pre-explosion
+eruptions and their interaction with the surrounding CSM indi-
+cate an LBV-like progenitor (Mauerhan et al. 2013).
+In this paper, we report the unique luminous SN II ASASSN-
+13dn. With a peak absolute magnitude of MV ∼−19 mag, the
+SN shows a secondary maximum 73 days after maximum light,
+and at 125 days after a drop of 4 magnitudes from the secondary
+maximum, the SN shows bumps. Spectroscopically, ASASSN-
+13dn displays broad hydrogen emission lines with ejecta ve-
+locities ∼14000 km s−1. In section 2 we present the data col-
+lected, describe the reduction process, and briefly describe the
+host galaxy properties. In Section 3 we describe both photome-
+try and spectroscopic data of ASASSN-13dn. Then, in Section
+4 we discuss possible power sources and the ejecta-CSM inter-
+action signatures found in the observations. Finally, in Section 5
+we present our conclusions.
+Fig. 1. LCOGT gri composite image of ASASSN-13dn.
+2. Data
+2.1. Discovery and host galaxy
+ASASSN-13dn was discovered by the All-Sky Automated Sur-
+vey for Supernovae (ASAS-SN; Shappee et al. 2014; Kochanek
+Article number, page 2 of 11
+
+
+--- Page 3 ---
+E. Hueichapán et al.: ASASSN-13dn: A Luminous and Double-Peaked Type II Supernova
+0
+25
+50
+75
+100
+125
+150
+175
+Rest-frame time relative to maximum [days]
+16
+17
+18
+19
+20
+21
+22
+Observed Magnitude
+V
+g
+r
+i
+z
+19
+18
+17
+16
+15
+14
+13
+Absolute Magnitude
+Fig. 2. ASASSN-13dn ligth curve. A secondary peak is observed at ∼73 days after the first detection. In the tail of the light curve, clear sign of
+ejecta-CSM interaction are seen in the wiggles. The decline slope after the secondary peak is faster than the slope after the first peak. The lines at
+the bottom mark the epochs where spectroscopic data are available. The vertical lines divide the light curve in the phases described in section 3.1
+et al. 2017) on December 5th 2013, 04:09 UT at a V-band mag-
+nitude of 15.70 by Shappee et al. (2013) and on December 17th,
+2013 at 21:03 UT the SN was classified as a type II SN (Mar-
+tini et al. 2013). It exploded in the outer regions of the star-
+forming galaxy SDSS J125258.03+322444.3 (z = 0.022636) at
+α=12h52m58s.20, δ = +32◦25′09”.30 (J2000.0). We adopt the
+Virgo Infall Only distance reported on NASA/IPAC Extragalac-
+tic Database of 96.0 Mpc (µ = 34.91 ± 0.15 mag) using a flat
+cosmology with H0 = 73 km s−1 Mpc −1 and Ωm = 0.27. At this
+distance, the supernova is ∼11.8 kpc from the center of its host
+galaxy (see Fig 1). We neglect any host-galaxy extinction due to
+the absence of any Na i D absorption in all our spectra, indicating
+a very low or negligible contribution from the host. Therefore,
+we adopt a total reddening of E(B −V) = 0.014 mag (Schlafly
+& Finkbeiner 2011), assuming a RV = 3.1 (Cardelli et al. 1989)
+this results in AV = 0.043 mag.
+Taggart & Perley (2021) include this galaxy in their photo-
+metric analysis of CCSNe hosts and estimate a total stellar mass
+of log10(M⋆/M⊙) = 9.85 ± 0.05 and a specific star-formation
+rate of log10(sSFR/yr−1) = 8.69+0.01
+−0.46. We extracted a spectrum
+of the host galaxy with the Multi-Object Double Spectrograph
+(MODS) at the Large Binocular Telescope (LBT) on July 2nd,
+2015 when the supernova had already faded. From the spectrum,
+we detect nebular emission lines of Hα, Hβ, [O III] 5007 Å, and
+[N II] 6583 Å. We used the scaling relation of Kennicutt (1998)
+to estimate a star-formation rate (SFR) of the host from the Hα
+luminosity of log10(SFR) = 0.79 M⊙yr−1. Using emission line
+ratios and the scaling relations presented in Marino et al. (2013),
+we estimate an oxygen abundance of 12+log(O/H) = 8.33 and
+12+log(O/H) = 8.38 with the O3N2 and N2 methods, respec-
+tively. These values are consistent with 12+log(O/H) = 8.39 and
+12+log(O/H) = 8.34 for the O3N2 and N2 indicators, the mean
+values of the oxygen abundances of the sample of core-collapse
+SNe from Pessi T. et al. (2023).
+2.2. Photometry
+The ASAS-SN V-band photometry using image subtraction is
+reported in Table 1. The supernova was followed-up with the
+Liverpool Telescope (LT; Steele et al. 2004) 2.0m and the Las
+Cumbres Observatory Global Telescope Network (LCOGTN;
+Article number, page 3 of 11
+
+
+--- Page 4 ---
+A&A proofs: manuscript no. aanda
+0
+25
+50
+75
+100
+125
+150
+175
+Rest Frame time relative to maximum [Days]
+0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+ g
+r [mag]
+Pessi et al 2023
+ASASSN-13dn
+Fig. 3. g −r color evolution of ASASSN-13dn compared with LSNe II
+presented in Pessi et al. (2023). Despite the variety of light curve shapes,
+the colors are consistent between objects.
+Brown et al. 2013) 1.0m telescopes from discovery until ∼180
+days after the first detection. The griz photometry was obtained
+performing PSF photometry with DoPhot (Schechter et al. 1993;
+Alonso-García et al. 2012), using photometry of stars in the field
+from SDSS DR12 (Alam et al. 2015) to perform photometric cal-
+ibrations. Image subtraction was performed on the g and r bands
+using a single archival SDSS DR12 image as a template. No ma-
+jor differences with the non-substracted photometry were seen,
+so no further attempts were made to improve the photometry.
+MJD
+V
+(days)
+(mag)
+56632.10
+15.97 ± 0.06
+56638.07
+15.99 ± 0.06
+56641.08
+16.25 ± 0.10
+56642.10
+16.20 ± 0.09
+56644.08
+16.08 ± 0.14
+56649.04
+16.24 ± 0.13
+56651.09
+16.30 ± 0.09
+56657.02
+16.67 ± 0.09
+56658.08
+16.62 ± 0.09
+Table 1. ASASSN-13dn V-band photometry.
+The SN exploded during a seasonal gap and no rise to peak
+was seen in the light curve. The last non-detection, on July 24.25
+2013, 134d before the discovery (Martini et al. 2013), so the ex-
+plosion date is poorly constrained. In the first 10 days, the V-
+band light curve slowly faded and then transitions to a steeper de-
+cay rate. This suggests that the supernova was discovered shortly
+after maximum light. For simplicity, we assumed that the first
+detection is close enough to the epoch of maximum light, and all
+reported times are relative to the discovery.
+2.3. Spectroscopy
+We obtained 13 optical spectra between +9d and +176d after
+maximum light using the Kitt Peak Ohio State Multi-Object
+Spectrograph (KOSMOS; Martini et al. 2014) on the KPNO
+Mayall 4m telescope, the Multi-Object Double Spectrograph
+(MODS; Pogge et al. 2010) on the Large Binocular Telescope
+(LBT; Hill et al. 2010), and the Dual Imaging Spectrograph
+(DIS) on the Apache Point Observatory (APO) 3.5m telescope.
+The spectra were reduced using standard techniques in IRAF that
+included basic 2D image reductions (overscan and bias subtrac-
+tion, flat-fielding), extraction of 1D spectra, wavelength calibra-
+tion using HeNeAr lamps, and flux calibration using a standard
+star observed the night of the observation. We corrected the ab-
+solute flux calibration of the spectra by matching synthetic pho-
+tometry from the spectra to the photometric light curve in the
+r-band.
+3. Analysis
+3.1. Light Curve
+ASASSN-13dn was discovered at an absolute magnitude of
+MV = −18.94 ± 0.21 mag. We fitted a second-order polynomial
+to the V-band photometry, calculated the mean-fit polynomial
+derivative, and found that this value is constantly decreasing. As
+the first detection is the point where the derivative is close to
+zero, we assume that the maximum light is at MJD = 56631.2 ±
+1.2. Using the r-band as a reference, we define four different sec-
+tions of the light curve: 1) An initial decline from first detection
+to +48d; 2) A rise from +49d to a secondary peak at +73d. For
+the following days, it slowly decays to; 3) A second and stepper
+decline from +91d to +132d and; 4) A bumpy tail from +132d
+to the end of the observations. Fitting a quadratic polynomial
+to the gri bands between +32d and +62d we find a minimum
+at +48.2± 0.8 days (MJD = 56681.05) . The light curve has a
+nearly linear decay of 4.4 mag/100d with a statistical error of
+0.1 mag after the first 10 days. We observe that the supernova
+reaches the secondary peak at different epochs for the individual
+gri-bands. Specifically, the later the peak occurs, the bluer the
+corresponding band (see Table 3).
+The light curve brightens ∼0.6 mag from +48d to +73d, and
+becomes bluer reaching its bluest color near the secondary peak.
+Next, the light curve decays 0.6 mag in ∼15 days. This peak
+is followed by a faster decay of 9.3 mag/100d with a statistical
+error of 0.1 mag for the next 35 days. There is a second minimum
+at +132d and wiggles in the light curve can be observed. Figure
+2 shows the light curve of ASASSN-13dn, where the described
+phases can be clearly distinguished.
+The luminosity of this object place it into the group of
+hydrogen-rich luminous SNe. In Figure 4 we present a compari-
+son between ASASSN-13dn r−band light curve with SN 1987A
+and LSNe II from the literature. Immediately after maximum,
+most of the supernovae in Figure 4 show a similar decay rate
+until ∼45d, with the extreme exception of the fast-declining
+SN 2017hxz. After this phase, the variety of light curves makes
+them difficult to compare, nonetheless, linear decay at differ-
+ent phases is the common behavior and the secondary peak
+of ASASSN-13dn is unique among this group. After this,
+ASASSN-13dn’s decay is faster than the other SNe presented
+here at similar phases. This is particularly clear when comparing
+the r-band light curve of ASASSN-13dn with ASASSN-15nx
+(Bose et al. 2018), an almost perfectly linearly declining SN II.
+Even though the light curves presented in Figure 4 show a
+wide variety in their behavior, the g −r colors (corrected for
+Galactic extinction) shown in Figure 3 are remarkably consis-
+tent between LSNe II. A slight change towards the blue between
++65d and +125d is detected, but it is still consistent with the blue
+colors of LSNe II. This change occurs at the same epochs where
+the secondary peak occurs.
+3.2. Bolometric light curve
+We estimated the bolometric and pseudo-bolometric evolution
+using superbol.py (Nicholl 2018) to fit a modified blackbody
+Article number, page 4 of 11
+
+
+--- Page 5 ---
+E. Hueichapán et al.: ASASSN-13dn: A Luminous and Double-Peaked Type II Supernova
+0
+25
+50
+75
+100
+125
+150
+175
+Rest-Frame time relative to maximum [days]
+22
+20
+18
+16
+14
+Mr
+ASASSN-13dn
+SN 1987A [R]
+SN 2008es [R]
+SN 2013fc
+ASASSN-15no
+SN 2016gsd
+ASASSN-18am
+Pessi et al. 2023
+SN 2017hxz
+Fig. 4. Comparison of the r-band absolute magnitude evolution with other LSNe II and SN 1987A. The phase is with respect to the maximum
+brightness. The bumps of ASASN-13dn are not seen in other objects. The adopted maximum light date in MJD, Distance (Mpc), and AV for each
+supernova are, respectively: SN 1987A1: 49849.8, 0.05, 0.206 (Hamuy & Suntzeff 1990); SN 2008es: 54599.3 1013.2 0.032 (Miller et al. 2009)
+SN 2013fc: 56530.8, 83.2, 2.914 (Kangas et al. 2016); ASASSN-15no: 57235.5, 153.5, 0.045 (Benetti et al. 2018); SN 2016gsd: 57662.5, 311.6,
+0.254 (Reynolds et al. 2020); ASASSN-18am: 58142.6, 140.5, 0.027 (Bose et al. 2018); SN 2017cfo: 57838.0, 178.2, 0.066; SN 2017hbj: 58031.0,
+75.0, 0.095; SN 2017hxz: 58070.0, 330.6, 0.128; SN 2018aql: 58206.0, 321.4, 0.052; SN 2018eph: 58342.0, 121.8, 0.066 (Pessi et al. 2023).
+1: Note that the phase reported for SN 1987A is relative to the explosion and not the maximum.
+.
+MJD
+g
+r
+i
+z
+(days)
+(mag)
+(mag)
+(mag)
+(mag)
+56644.01
+16.60 ± 0.03
+16.16 ± 002
+– –
+– –
+56644.98
+16.61 ± 0.02
+16.19 ± 002
+16.24 ± 002
+– –
+56646.01
+– –
+16.24 ± 003
+– –
+– –
+56650.00
+16.73 ± 0.02
+16.33 ± 001
+16.39 ± 002
+– –
+56653.03
+16.84 ± 0.03
+16.40 ± 002
+16.44 ± 003
+– –
+...
+...
+...
+...
+...
+Table 2. ASASSN-13dn griz photometry from Liverpool Telescope (LT) and Las Cumbres Observatory Global Telescope Network (LCOGTN).
+The complete table can be found in the supplementary material.
+Article number, page 5 of 11
+
+
+--- Page 6 ---
+A&A proofs: manuscript no. aanda
+41
+42
+43
+Log10 Lbol [erg s
+1]
+LBol
+LObs
+4
+6
+8
+Temperature [x 103 K]
+0
+25
+50
+75
+100
+125
+150
+175
+Rest frame time relative to maximum [days]
+1
+2
+3
+Radius [x 1015cm]
+Fig. 5. Bolometric light curve and best-fit parameters from the black-
+body fitting for ASASSN-13dn. The upper panel shows the bolomet-
+ric and pseudo-bolometric light curve. The middle and bottom pan-
+els shows the effective temperature and blackbody radius derived from
+superbol.py, respectively. The increase at +40d might indicate an
+outward movement of the photosphere.
+Filter
+MJD
+Phase
+m
+M
+[days]
+[days]
+[mag]
+[mag]
+g
+56706.5
+74.4 ± 2.8
+17.55 ± 0.03
+-17.36 ± 0.03
+r
+56705.1
+73.0 ± 2.1
+16.94 ± 0.02
+-17.97 ± 0.02
+i
+56703.2
+71.1 ± 2.6
+17.04 ± 0.04
+-17.87 ± 0.04
+Table 3. ASASSN-13dn secondary peak epochs, phases, and magnitude
+for individual gri bands.
+to the photometry. The bolometric light curve integrates the
+model between 1500 and 25000 Å while the pseudo-bolometric
+light curve only uses the wavelength range of the observed griz
+photometry. Since it is the best sampled photometric band, we
+used the r-band detections as the reference light curve. The z-
+band was extrapolated assuming a constant z −r color from
+peak to first z-detection at +65d. The resulting bolometric light
+curve, effective temperature, and blackbody radius are presented
+in Figure 5. We estimate a maximum bolometric luminosity of
+1.3 ± 0.6 × 1043 erg s−1 and a total radiated energy of Etot >
+4.5 × 1049 erg.
+An abrupt increase of 1015cm in the radius at +55 days is
+observed and at the same time, a slow rise in the temperature of
+2 × 103 K occurred. Simultaneously, the observed colors in Fig-
+ure 3 became bluer, consistent with the increasing temperature
+at the same epochs. This suggests an outward movement of the
+photosphere, potentially driven by an additional energy source
+boosting the light curves at this time.
+The wiggles at the end of the light curve are not consistent
+with a radioactive decay-powered explosion. Therefore we can
+only place an upper limit on the 56Ni synthesized in the explo-
+sion. Assuming a rise time between 15−25 days and considering
+that the luminosity at +132d of 1.45 ×1041 erg s−1 is Nickel-
+powered with full trapping of gamma-rays, we used Nadyozhin
+(1994) to estimate an upper limit of ∼0.02 M⊙of 56Ni, a fac-
+tor of two lower than the mean nickel mass for a Type II SNe
+of M(56Ni) = 0.046 M⊙(Müller et al. 2017) and of M(56Ni) =
+0.036 M⊙reported by Martinez et al. (2022).
+3.3. Spectra
+Between +9d and +176d, 13 optical spectra of ASASSN-13dn
+were taken. The spectra are characterized by a broad Hα emis-
+sion line with velocities measured from the FWHM higher than
+10000 km s−1 until 86d post-maximum. Broad Fe ii at λ4924
+Å and λ5018 Å lines are detected, but during the evolution of
+ASASSN-13dn those lines are blended with the Hβ emission line
+and themselves, so no further analysis was done with the Fe ii
+features. Na i at λ5889.9 Å and the Ca triplet at λ8498 Å, λ8542
+Å and λ8662 Å are also detected. Davis et al. (2019) published a
+Near-Infrared (NIR) spectrum of ASASSN-13dn at +77d (MJD
+= 56711) that is mainly dominated by hydrogen, showing strong
+Pγ at λ1.094 µm, Pβ at λ1.282 µm, and Pα at λ1.875 µm. The
+spectroscopic evolution of ASASSN-13dn is presented in Figure
+6 and the spectroscopic log is in Table 4.
+In Figure 7 we compare the spectra from +9d to +38d
+with other early spectra of LSNe II. ASASSN-13dn shows
+a strong emission line of Hα with a weak P-Cygni absorp-
+tion, blended Fe ii lines, and weak Na i emission profile. The
+broad hydrogen profile at this phase is only comparable with
+the type IIb SN 2003bg Hamuy et al. (2009). Before +30d,
+SN 2016gsd (Reynolds et al. 2020), SN 2017hbj (Pessi et al.
+2023), SN 2017hxz (Pessi et al. 2023), and SN 2018eph (Pessi
+et al. 2023) are mainly a blue featureless continuum.
+Between +50d and +100d, all the spectra in Figure 7 are
+characterized by strong and broad Balmer emission lines. Boxy
+Hα emission profiles are seen in the spectra of SN 2018eph
+and SN 2017hbj. A strong Ca ii triplet at λ8498 Å, λ8542 Å
+and λ8662 Å is also present in SN 2017hbj and ASASSN-15nx
+(Bose et al. 2018). Both ASASSN-13dn and SN 2017hxz shown
+an asymmetry towards the red wing of the Hα line, which is
+not seen in other supernovae. With the exception of SN 2016gsd
+Reynolds et al. (2020), P-Cygni absorption at these phases is ei-
+ther weak or not detected.
+At later epochs, the spectra are dominated by Balmer emis-
+sion lines with profiles that deviate from a single Gaussian com-
+ponent. Although the spectra of the other LSNe II shown in Fig-
+ure 8 are characterized by a broad and boxy Hα emission line,
+the spectra of ASASSN-13dn are dominated by a narrow Hα
+profile, with an absorption within the emission line at λ6540
+Å. He i at λ7065 Å, λ7281 Å and Ca ii λ8498 Å, λ8542 Å, and
+λ8662 Å lines are observed in nebular spectra of ASASSN-15nx
+and SN 2016gsd. Helium is not detected in ASASSN-13dn and
+a weak calcium line is detected in the last spectrum (ϕ + 176d).
+3.4. Hα evolution
+The Hα line profile and evolution shown in Figure 9 is complex.
+In the first two spectra, at +9d and +11d, the Hα peak is blue-
+shifted by 2174 km s−1. From +38d to +86d, a shoulder appears
+on the the red wing of the emission line. In the +98d spectra,
+the line shows bumps towards the red and the blue sections of
+the emission line and and finally, the blue bump seen at +98d
+evolves into a narrow P-Cygni profile detected between +135d
+and +147d.
+Article number, page 6 of 11
+
+
+--- Page 7 ---
+E. Hueichapán et al.: ASASSN-13dn: A Luminous and Double-Peaked Type II Supernova
+4000
+5000
+6000
+7000
+8000
+9000
+Rest-frame wavelength [Å]
+Normalized flux + constant [erg s
+1 cm
+2 Å 
+1]
+ 9 d.
+ 11 d.
+ 38 d.
+ 52 d.
+ 64 d.
+ 82 d.
+H
+Fe II
+Na I
+H
+Ca II
+KOSMOS
+APO
+MODS
+4000
+5000
+6000
+7000
+8000
+9000
+Rest-frame wavelength [Å]
+Normalized flux + constant [erg s
+1 cm
+2 Å 
+1]
+ 86 d.
+ 98 d.
+ 120 d.
+ 135 d.
+ 140 d.
+ 147 d.
+ 176 d.
+H
+Fe II
+Na I
+H
+Ca II
+APO
+MODS
+Fig. 6. Spectroscopic evolution of ASASSN-13dn. The flux has been normalized to the maximum of Hα for visibility purposes.
+Date [UT]
+MJD
+Phase [d] (*)
+Instrument
+Resolution
+Range [Å]
+2013-12-16.97
+56642.97
+9
+KOSMOS
+2800
+3805 - 9660
+2013-12-18.99
+56644.99
+11
+KOSMOS
+2800
+3805 - 9660
+2014-01-14.03
+56671.03
+38
+KOSMOS
+2800
+3805 - 9660
+2014-01-29.78
+56686.78
+42
+APO
+800
+3500 - 9800
+2014-02-10.74
+56698.74
+64
+APO
+800
+3500 - 9800
+2014-02-28.87
+56716.87
+82
+MODS
+2000
+3400 - 10000
+2014-03-05.75
+56721.75
+86
+APO
+800
+3500 - 9800
+2014-03-17.88
+56733.88
+98
+APO
+800
+3500 - 9800
+2014-04-08.87
+56755.87
+120
+APO
+800
+3500 - 9800
+2014-04-24.90
+56771.90
+135
+APO
+800
+3500 - 9800
+2014-04-29.69
+56776.69
+140
+MODS
+2000
+3400 - 10000
+2014-05-06.91
+56783.91
+147
+APO
+800
+3500 - 9800
+2014-06-05.68
+56813.68
+176
+MODS
+2000
+3400 - 10000
+Table 4. Log of spectroscopic observations. (*) : Phases are in rest frame and relative to the first detection. For simplicity were truncated to the
+unit.
+The blue-shifted peak of the emission observed in the +9d
+and +11d spectra has a velocity of 2174 km s−1 and is consistent
+with that observed by Pessi et al. (2023) at later epochs for other
+LSNe II, nonetheless, it is not detected on the observations at
++38d after peak. During the following observations, from +38d
+to +86d, a small but persistent shoulder appears on the red wing
+of Hα at 6678 Å. It is detected in every spectrum between +38d
+and +98d, being most prominent at +82d, coincident with the
+secondary peak in the light curve. A similar structure is present
+in the Hβ line profile, particularly clear at +52d and +82d. Figure
+10 shows the emission profiles of Hα and Hβ at +82d where
+the shoulder is observed in both profiles with similar velocities,
+indicating that this structure is most likely related to asymmetries
+in the ejecta rather than the He ii line.
+We calculate the FWHM velocity (vFWHM) and the veloc-
+ity of the P-Cygni absorption trough (vPcyg) from the Hα line
+in ASASSN-13dn. To fit and subtract the pseudo-continuum of
+the line, we used PYTHON’s package specutils (Earl et al.
+2022) in the range of the line profile for each spectrum. We
+also calculate the pseudo-equivalent width (pEW) of the line.
+This parameter quantifies the strength of the line compared to
+a pseudo continuum arbitrarily defined. In this case, we use the
+same specutils package to redefine a pseudo-continuum in the
+range of the Hα emission. For both vFWHM and pEW we de-
+termine the uncertainties by randomly varying the wavelength
+range used to determine the pseudo-continuum by ±5Å in a nor-
+mal distribution. The evolution of the vFWHM and vPcyg velocities
+are presented in Figure 11.
+In figure 12 we show the Hα velocity measured from the
+FWHM (vFWHM) and pEW evolution of ASASSN-13dn com-
+pared with the samples of normal type II SNe from Gutiérrez
+et al. (2017) and LSNe II from Pessi et al. (2023). The velocity
+and pEW evolution of ASASSN-13dn is consistent with LSNe
+II. Between +9d and +98d, the P-Cygni velocities are always
+higher than 10000 km s−1, but at +140d and +176d spectra, the
+absorption was not detected. The Hα profile evolution is pre-
+Article number, page 7 of 11
+
+
+--- Page 8 ---
+A&A proofs: manuscript no. aanda
+4000
+5000
+6000
+7000
+8000
+9000
+10000
+Rest-frame wavelength [Å]
+Normalized flux + cons [erg s
+1 cm
+2 Å 
+1]
+ -8.5 d.
+ 9.0 d.
+ 13.9 d.
+ 22.2 d.
+ 32.1 d.
+ 32.7 d.
+ 38.0 d.
+H
+Fe II
+Na I
+H
+Ca II
+ASASSN-13dn
+SN 2003bg
+ASASSN-15nx
+SN2016gsd
+SN2017hbj
+SN 2017hxz
+SN2018eph
+4000
+5000
+6000
+7000
+8000
+9000
+10000
+Rest-frame wavelength [Å]
+ 46.6 d.
+ 48.0 d.
+ 52.0 d.
+ 53.5 d.
+ 63.9 d.
+ 77.4 d.
+ 82.0 d.
+ 87.9 d.
+ 96.7 d.
+H
+Fe II
+Na I
+H
+Ca II
+Fig. 7. Comparison of ASASSN-13dn spectra with LSNe II studied in literature at different epochs. Left: ASASSN-13dn peak spectra with
+SN 2003bg (Hamuy et al. 2009) ASASSN-15nx (Bose et al. 2018), SN 2016gsd (Reynolds et al. 2020). Spectra of SN 2017hxz, SN 2017hbj,
+SN 2018eph are from Pessi et al. (2023). Right: Comparison ASASSN-13dn secondary peak spectra with ASASSN-15nx (Bose et al. 2018),
+SN 2016gsd (Reynolds et al. 2020). Spectra of SN 2017hxz, SN 2017hbj, SN 2018eph are from Pessi et al. (2023). Phases reported in this figure
+are relative to the maximum luminosity reported in the references.
+4000
+5000
+6000
+7000
+8000
+9000
+Rest-frame wavelength [Å]
+Normalized flux + cons [erg s
+1 cm
+2 Å 
+1]
+ 124.9 d.
+ 135.0 d.
+ 141.2 d.
+ 147.0 d.
+ 166.4 d.
+ 176.0 d.
+ 176.9 d.
+H
+Fe II
+Na I
+H
+Ca II
+ASASSN-13dn
+ASASSN-15nx
+SN2016gsd
+SN2017hbj
+Fig. 8. Comparison ASASSN-13dn late spectra with ASASSN-15nx
+(Bose et al. 2018), SN 2016gsd (Reynolds et al. 2020) and SN 2017hbj
+(Pessi et al. 2023). Phases reported in this figure are relative to the max-
+imum luminosity reported in the references.
+sented in Figure 9. In the last three spectra, a P-Cygni profile
+inside the hydrogen line at λ6550 Å is detected, and a velocity
+of 1100 km s−1 was measured.
+4. Discussion
+In this section, we explore different scenarios that could explain
+the luminosity and light curve features of ASASSN-13dn. Al-
+though the power source remains unclear, several signs of ejecta-
+CSM interaction are seen in the observations. The presence of
+a weak P-Cygni profile in the Hα line has been interpreted as a
+consequence of interaction in type II SNe (Gutiérrez et al. 2014).
+A shoulder at ∼4100 km s−1, detected in both the Hα and
+Hβ profiles near the second peak, is consistent with this inter-
+action. Observed between +38d and +86d, it matches the rest
+wavelength of He i emission, but it is most likely related to the
+ejecta-CSM interaction as it is also detected in the Hβ line at a
+similar velocity (see Fig 10). A similar feature is described by
+Dessart & Hillier (2022) in models and is associated with an in-
+crease in the interaction power of the model.
+In the later phases, the double-peaked Hα profile and the
+bumpy light curve — particularly the wiggles observed after
++128d — indicate a continued interaction between the ejecta
+and the surrounding material. The P-Cygni absorption profiles
+at +140d, +147d, and +176d, with a velocity of 1100 km s−1,
+suggest interaction with a stellar wind or eruption from a mas-
+sive progenitor star (Smith 2014). Similar profiles were observed
+by Mauerhan et al. (2013) in SN 2009ip, a type IIn SN, who pro-
+posed an LBV-like progenitor to explain the high velocity of the
+CSM shell. A comparable light curve signature, including sim-
+Article number, page 8 of 11
+
+
+--- Page 9 ---
+E. Hueichapán et al.: ASASSN-13dn: A Luminous and Double-Peaked Type II Supernova
+15
+10
+5
+0
+5
+10
+15
+Velocity [103 km s
+1]
+Normalized Flux
+ 9 d
+ 11 d
+15
+10
+5
+0
+5
+10
+15
+Velocity [103 km s
+1]
+Normalized Flux
+ 38 d
+ 52 d
+ 64 d
+15
+10
+5
+0
+5
+10
+15
+Velocity [103 km s
+1]
+ 82 d
+ 86 d
+ 98 d
+15
+10
+5
+0
+5
+10
+15
+Velocity [103 km s
+1]
+Normalized Flux
+ 120 d
+ 135 d
+15
+10
+5
+0
+5
+10
+15
+Velocity [103 km s
+1]
+ 140 d
+ 147 d
+ 176 d
+Fig. 9. Hα evolution of ASASSN-13dn. Top: Spectra close to the first
+detection, broad Hα lines with velocities vFWHM close to 14000 km s−1
+and a blueshifted peak. Middle panel: Persistent asymmetries towards
+the red part of the line from +38d to +98d at ∼5000 km s−1. Bottom:
+Corresponding to the last epochs of the light curve Hα shows asym-
+metries and a strong P-Cygni profile at +140d. This absorption has a
+velocity of ∼1100 km s−1.
+15
+10
+5
+0
+5
+10
+15
+Velocity [103 kms
+1]
+Normalized flux
+H
+H
+Shoulder region
+Fig. 10. Hα and Hβ emission lines from the +82d spectrum. The blue
+region marks the shoulder detected in both Hα and Hβ. The flux was
+normalized to the peak of the emission for visibility purposes.
+ilar wiggles, was observed in the type IIn SN iPTF13z, where
+the authors suggested that the interaction between the ejecta and
+denser CSM regions produced by LBV-like progenitor eruptions
+was responsible (Nyholm et al. 2017).
+In this scenario, three dense CSM shells at distances of
+∼4.9 × 1015 cm, ∼1.3 × 1016 cm, and ∼1.6 × 1016 cm, can pro-
+duce the interaction signs at the secondary peak and subsequent
+0
+25
+50
+75
+100
+125
+150
+175
+Days Since first detection
+2
+4
+6
+8
+10
+12
+14
+Velocity [103 km s
+1]
+vFWHM
+vPCyg
+Fig. 11. Velocity evolution of ASASSN-13dn. The vFWHM corresponds
+to the velocity measured from the FWHM of the Hα emission and the
+vPcyg is the velocity measured from the P-Cygni through.
+0
+20
+40
+60
+80
+100
+120
+0
+200
+400
+600
+800
+1000
+pEW [Å]
+Gutierrez et al. 2017
+Pessi et al. 2023
+ASASSN-13dn
+0
+20
+40
+60
+80
+100
+120
+Phase relative to maximmum light
+2.5
+5.0
+7.5
+10.0
+12.5
+15.0
+17.5
+20.0
+Velocity [103 km/s]
+Fig. 12. Hα FWHM velocities (vFWHM) and pEW of ASASSN-13dn
+compared with the sample of LSNe II from Pessi et al. (2023) and the
+SNe II sample from Gutiérrez et al. (2017).
+wiggles observed in the light curve. These distances were deter-
+mined by interpolating the Hα FWHM velocity vFWHM (Fig 11)
+and integrating the interpolated velocities to calculate the dis-
+tance traveled by the material at specific epochs. Assuming a
+rise time of 20 days and a constant velocity of 12000 km s−1
+up to day +9d, the secondary peak at +73d and the wiggles at
++138d and +170d align with these shell locations. Assuming a
+velocity of the progenitor eruption/wind between 100 and 1000
+km s−1, the first shell is inferred to have been ejected between 25
+to 2.5 years, prior to the explosion while the later shells, based
+on a CSM velocity of 1100 km s−1 measured from the +140d
+Hα spectrum 9 were produced 4.9 and 5.7 years before the ex-
+plosion.
+Using these observations, the properties of the CSM can be
+constrained. The wind-density parameter is defined by ˙M/VCS M
+Article number, page 9 of 11
+
+
+--- Page 10 ---
+A&A proofs: manuscript no. aanda
+= 2L/V3
+S N, where VCS M is the CSM velocity, VS N is the ejecta
+velocity, L the luminosity, and ˙M is the mass-loss rate. Using the
+bolometric luminosity of the first wiggle at +154d of 1.3 x 1043
+erg s−1 and a mean velocity of 11000 km s−1 from the P-Cygni
+absorption we calculate a wind-density parameter of 1.7 × 1016
+g cm−1. Additionally, with the CSM velocity measured at +140d
+we estimate a mass-loss rate ˙M ∼0.08 M⊙yr−1 in this scenario.
+The light curve of ASASSN-13dn, shown in Figure 2, dis-
+plays notable features, including a secondary peak and bumps
+at later times. In section 3.1, we measure the slopes of the light
+curve in different sections, finding a rapid decline immediately
+after the peak, followed by an even steeper decay after the sec-
+ondary peak. The presence of CSM-ejecta interactions is known
+to enhance early-time luminosity, resulting in a rapidly declin-
+ing light curve (Morozova et al. 2017). The irregularities, par-
+ticularly the wiggles observed post +128d, coincide with the ap-
+pearance of the P-Cygni absorption at 1100 km s−1 in the Hα
+emission, further reinforcing the signature of ejecta-CSM inter-
+action.
+Energy injection by the spin down of a newly born magne-
+tar (Kasen & Bildsten 2010; Woosley 2010) has been proposed
+to explain the extreme luminosities of transients, particularly
+H-poor SLSNe (Chatzopoulos et al. 2013; Nicholl et al. 2018;
+Hsu et al. 2021). This scenario has been proposed for a few
+hydrogen-rich SNe (iPTF14hls; (Dessart 2018) , OGLE-2014-
+SN-073; (Dessart & Audit 2018), (Orellana et al. 2018)) as well
+as more normal stripped-envelope SNe (Rodríguez et al. 2024).
+In the case of ASASSN-13dn, a delayed power injection from
+a magnetar may boost the luminosity and explain the secondary
+peak.
+The interaction between stars in a binary system has been
+proposed to explain pre-peak luminosity bumps, double-peaked
+light curves, and late-time wiggles (Dessart et al. 2024). A recent
+example of a SN with late-time wiggles is SN 2022jli, a type Ic
+supernova showing periodic undulations in its light curve, that
+might be explained by the stripping of the outer envelope of a
+companion star (Chen et al. 2024; Cartier et al. 2024). This is in
+good agreement with the periodic displacement of the peak emis-
+sion lines in the same timescale. Although the stripping of the
+outer layers of a companion could form a complex CSM struc-
+ture which can explain the different structures in the emission
+lines of ASASSN-13dn, we cannot determine periodicity in the
+wiggles of the light curve.
+A mixture of several power sources is also a feasible sce-
+nario. Zhu et al. (2024) proposed a model in which a magnetar
+formed in the SN can evaporate the outer layers of a companion
+star. The heating of the outer envelope can produce post-peak
+bumps and broaden the emission lines by accelerating the super-
+nova ejecta. A similar scenario could explain the secondary peak,
+the wiggles, and the high ejecta velocities observed in ASASSN-
+13dn.
+5. Summary and conclusions
+ASASSN-13dn is a unique example of a double-peaked lumi-
+nous supernova in the LSNe II class. We present an analysis of
+this hydrogen-rich supernova, whose light curve exhibits a pri-
+mary peak at MV ∼−19 mag, placing it within the category
+of Luminous Supernovae. Approximately 45 days after reaching
+peak luminosity, the brightness of the supernova increases by 0.6
+mag over a period of 30 days, reaching a secondary peak at +73
+days. Then, the light curve shows a decline at a rate of ∼4.4 mag
+per 100 days. Finally, two distinct wiggles are observed in all
+bands from +125 days until the last detection.
+Although ASASSN-13dn falls into the broad-line LSNe II
+group, some of the spectroscopic and photometric features differ
+from the sample shown by Pessi et al. (2023). Most of the lumi-
+nous supernovae are characterized by a blue continuum at early
+epochs while the peak spectra of ASSASN-13dn is dominated
+by strong hydrogen emission lines. This leads to a g −r color at
+peak luminosity of ASASSN-13dn that is 0.4 mag redder than
+the LSNe-II Pessi et al. (2023). This might indicate a problem
+with the phases calculated under the assumption that the first
+detection is the peak luminosity. Spectroscopically, ASASSN-
+13dn shows broad hydrogen emission lines from peak to +86d
+with measured FWHM velocities higher than 7000 km s−1. The
+P-cygni through velocity remain fairly constant until +98d at ∼
+11000 km s−1. Finally, the P-Cygni through at 1100 km s−1 in
+the last three spectrum seems to indicate that the ejecta is inter-
+acting with a fast-moving CSM probably produced by eruptions
+of an LVB-like progenitor.
+Acknowledgements. E.H thanks Priscilla Pessi and Claudia Gutierrez for the data
+sent via private communication. E.H. was financially supported by Becas-ANID
+scholarship #21222163 and by ANID, Millennium Science Initiative, AIM23-
+0001. J.L.P acknowledges support from ANID, Millennium Science Initiative,
+AIM23-0001. R.C. acknowledges support from Gemini ANID ASTRO21-0036
+References
+Alam, S., Albareti, F. D., Allende Prieto, C., et al. 2015, ApJS, 219, 12
+Alonso-García, J., Mateo, M., Sen, B., et al. 2012, AJ, 143, 70
+Anderson, J. P., González-Gaitán, S., Hamuy, M., et al. 2014, ApJ, 786, 67
+Arcavi, I., Howell, D. A., Kasen, D., et al. 2017, Nature, 551, 210
+Barbon, R., Ciatti, F., & Rosino, L. 1979, A&A, 72, 287
+Benetti, S., Zampieri, L., Pastorello, A., et al. 2018, MNRAS, 476, 261
+Bose, S., Dong, S., Kochanek, C. S., et al. 2018, ApJ, 862, 107
+Branch, D., Falk, S. W., McCall, M. L., et al. 1981, ApJ, 244, 780
+Branch, D. & Wheeler, J. C. 2017, Supernova Explosions
+Brown, T. M., Baliber, N., Bianco, F. B., et al. 2013, PASP, 125, 1031
+Cardelli, J. A., Clayton, G. C., & Mathis, J. S. 1989, ApJ, 345, 245
+Cartier, R., Contreras, C., Stritzinger, M., et al. 2024, arXiv e-prints,
+arXiv:2410.21381
+Chatzopoulos, E., Wheeler, J. C., Vinko, J., Horvath, Z. L., & Nagy, A. 2013,
+ApJ, 773, 76
+Chen, P., Gal-Yam, A., Sollerman, J., et al. 2024, Nature, 625, 253
+Chen, Z. H., Yan, L., Kangas, T., et al. 2023, ApJ, 943, 41
+Chugai, N. N. 2019, Astronomy Letters, 45, 427
+Davis, S., Hsiao, E. Y., Ashall, C., et al. 2019, ApJ, 887, 4
+De Cia, A., Gal-Yam, A., Rubin, A., et al. 2018, ApJ, 860, 100
+Dessart, L. 2018, A&A, 610, L10
+Dessart, L. & Audit, E. 2018, A&A, 613, A5
+Dessart, L., Gutiérrez, C. P., Ercolino, A., Jin, H., & Langer, N. 2024, A&A, 685,
+A169
+Dessart, L. & Hillier, D. J. 2022, A&A, 660, L9
+Dexter, J. & Kasen, D. 2013, ApJ, 772, 30
+Earl, N., Tollerud, E., O’Steen, R., et al. 2022, astropy/specutils: v1.9.1
+Filippenko, A. V. 1997, ARA&A, 35, 309
+Filippenko, A. V., Matheson, T., & Ho, L. C. 1993, ApJ, 415, L103
+Gomez, S., Berger, E., Nicholl, M., Blanchard, P. K., & Hosseinzadeh, G. 2022,
+ApJ, 941, 107
+Gutiérrez, C. P., Anderson, J. P., Hamuy, M., et al. 2014, ApJ, 786, L15
+Gutiérrez, C. P., Anderson, J. P., Hamuy, M., et al. 2017, ApJ, 850, 89
+Gutiérrez, C. P., Bersten, M. C., Orellana, M., et al. 2021, MNRAS, 504, 4907
+Hamuy, M., Deng, J., Mazzali, P. A., et al. 2009, ApJ, 703, 1612
+Hamuy, M. & Suntzeff, N. B. 1990, AJ, 99, 1146
+Heger, A., Fryer, C. L., Woosley, S. E., Langer, N., & Hartmann, D. H. 2003,
+ApJ, 591, 288
+Hill, J. M., Green, R. F., Ashby, D. S., et al. 2010, in Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, Vol. 7733, Ground-based
+and Airborne Telescopes III, ed. L. M. Stepp, R. Gilmozzi, & H. J. Hall,
+77330C
+Hsu, B., Hosseinzadeh, G., & Berger, E. 2021, ApJ, 921, 180
+Kangas, T., Mattila, S., Kankare, E., et al. 2016, MNRAS, 456, 323
+Kasen, D. & Bildsten, L. 2010, The Astrophysical Journal, 717, 245
+Kennicutt, Robert C., J. 1998, ARA&A, 36, 189
+Kochanek, C. S., Shappee, B. J., Stanek, K. Z., et al. 2017, PASP, 129, 104502
+Article number, page 10 of 11
+
+
+--- Page 11 ---
+E. Hueichapán et al.: ASASSN-13dn: A Luminous and Double-Peaked Type II Supernova
+Li, W., Leaman, J., Chornock, R., et al. 2011, Monthly Notices of the Royal
+Astronomical Society, 412, 1441
+Liu, Q. Z., Hu, J. Y., Hang, H. R., et al. 2000, A&AS, 144, 219
+Marino, R. A., Rosales-Ortega, F. F., Sánchez, S. F., et al. 2013, A&A, 559, A114
+Martinez, L., Bersten, M. C., Anderson, J. P., et al. 2022, A&A, 660, A41
+Martini, P., Elias, J., Points, S., et al. 2013, The Astronomer’s Telegram, 5667, 1
+Martini, P., Elias, J., Points, S., et al. 2014, in Society of Photo-Optical Instru-
+mentation Engineers (SPIE) Conference Series, Vol. 9147, Ground-based and
+Airborne Instrumentation for Astronomy V, ed. S. K. Ramsay, I. S. McLean,
+& H. Takami, 91470Z
+Mauerhan, J. C., Smith, N., Filippenko, A. V., et al. 2013, MNRAS, 430, 1801
+Miller, A. A., Chornock, R., Perley, D. A., et al. 2009, ApJ, 690, 1303
+Moriya, T. J., Terreran, G., & Blinnikov, S. I. 2018, MNRAS, 475, L11
+Morozova, V., Piro, A. L., & Valenti, S. 2017, ApJ, 838, 28
+Müller, T., Prieto, J. L., Pejcha, O., & Clocchiatti, A. 2017, ApJ, 841, 127
+Nadyozhin, D. K. 1994, ApJS, 92, 527
+Nicholl, M. 2018, Research Notes of the American Astronomical Society, 2, 230
+Nicholl, M. 2021, Astronomy and Geophysics, 62, 5.34
+Nicholl, M., Blanchard, P. K., Berger, E., et al. 2018, ApJ, 866, L24
+Nyholm, A., Sollerman, J., Taddia, F., et al. 2017, A&A, 605, A6
+Orellana, M. & Bersten, M. C. 2022, A&A, 667, A92
+Orellana, M., Bersten, M. C., & Moriya, T. J. 2018, A&A, 619, A145
+Pessi, P. J., Anderson, J. P., Folatelli, G., et al. 2023, MNRAS, 523, 5315
+Pessi T., T., Prieto, J. L., Anderson, J. P., et al. 2023, A&A, 677, A28
+Pogge, R. W., Atwood, B., Brewer, D. F., et al. 2010, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, Vol. 7735, Ground-
+based and Airborne Instrumentation for Astronomy III, ed. I. S. McLean,
+S. K. Ramsay, & H. Takami, 77350A
+Quimby, R. M., Kulkarni, S. R., Kasliwal, M. M., et al. 2011, Nature, 474, 487
+Reynolds, T. M., Fraser, M., Mattila, S., et al. 2020, MNRAS, 493, 1761
+Rodríguez, Ó., Nakar, E., & Maoz, D. 2024, Nature, 628, 733
+Schechter, P. L., Mateo, M., & Saha, A. 1993, PASP, 105, 1342
+Schlafly, E. F. & Finkbeiner, D. P. 2011, ApJ, 737, 103
+Schlegel, E. M. 1990, MNRAS, 244, 269
+Shappee, B. J., Prieto, J. L., Grupe, D., et al. 2014, ApJ, 788, 48
+Shappee, B. J., Stanek, K. Z., Kochanek, C. S., et al. 2013, The Astronomer’s
+Telegram, 5665, 1
+Smith, N. 2014, ARA&A, 52, 487
+Steele, I. A., Smith, R. J., Rees, P. C., et al. 2004, in Society of Photo-Optical In-
+strumentation Engineers (SPIE) Conference Series, Vol. 5489, Ground-based
+Telescopes, ed. J. Oschmann, Jacobus M., 679–692
+Taggart, K. & Perley, D. A. 2021, MNRAS, 503, 3931
+Woosley, S. E. 2010, ApJ, 719, L204
+Woosley, S. E., Pinto, P. A., & Hartmann, D. 1989, ApJ, 346, 395
+Zhu, J.-P., Liu, L.-D., Yu, Y.-W., et al. 2024, ApJ, 970, L42
+Article number, page 11 of 11
+
