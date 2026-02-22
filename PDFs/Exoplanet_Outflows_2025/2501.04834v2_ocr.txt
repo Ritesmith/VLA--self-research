@@ -1,0 +1,2235 @@
+
+--- Page 1 ---
+Draft version January 13, 2025
+Typeset using LATEX twocolumn style in AASTeX631
+Detectability of Emission from Exoplanet Outflows Calculated by pyTPCI, a New 1D
+Radiation-Hydrodynamic Code
+Riley Rosener
+,1 Michael Zhang
+,1 and Jacob L. Bean
+1
+1Department of Astronomy & Astrophysics
+University of Chicago
+5640 S Ellis Ave
+Chicago, IL 60637, USA
+ABSTRACT
+Photoevaporation in exoplanet atmospheres is thought to contribute to the shaping of the small
+planet radius valley. Escaping atmospheres have been detected in transmission across a variety of
+exoplanet types, from hot Jupiters to mini-Neptunes. However, no work has yet considered whether
+outflows might also be detectable in emission. We introduce pyTPCI, a new, open-source self-consistent
+1D radiative-hydrodynamics code that is an improved version of The PLUTO-CLOUDY Interface. We
+use pyTPCI to model seven exoplanets (HD 189733b, HD 209458b, WASP-69b, WASP-107b, TOI-
+1430b, TOI-560b, and HAT-P-32b) at varying metallicities and compute their emission spectra to
+investigate their detectability across a variety of spectral lines. We calculate the eclipse depths and
+signal-to-noise ratios (SNR) of these lines for a 10m class telescope with a high-resolution spectrograph,
+taking into account appropriate line broadening mechanisms.
+We show that the most detectable
+spectral lines tend to be the 589 nm Na I doublet and the 1083 nm metastable helium triplet. Hα and
+Mg I 457 nm are moderately strong for some planets at some metallicities, but they are almost always
+optically thin, so some of their emission may not be from the outflow. The planet with the highest-flux,
+highest-eclipse-depth, and highest-SNR lines is HD 189733b, with a Na I eclipse depth of 410 ppm and
+SNR of 2.4 per eclipse, and a He∗eclipse depth of 170 ppm and SNR of 1.3. These signals would be
+marginally detectable with Keck if 3–10 eclipses were observed, assuming (over-optimistically) photon
+limited observations.
+1. INTRODUCTION
+The study of escaping exoplanet atmospheres is only
+20 years old (Vidal-Madjar et al. 2003), and yet the de-
+velopment of novel approaches to atmospheric modeling
+and observing is still rapidly advancing the field. Ex-
+oplanets close to their host stars experiencing strong
+irradiation at high-energy wavelengths will gradually
+have their atmospheres stripped away via photoevapora-
+tion. Although the specific mechanisms and timescales
+of this process remain controversial and not yet fully
+understood, it is vital for understanding exoplanet de-
+mographics, particularly the radius gap between super-
+Earths and mini-Neptunes that it likely has a key role
+in sculpting (Fulton et al. 2017; Fulton & Petigura 2018;
+Owen & Wu 2013; Owen & Schlichting 2023).
+Corresponding author: Riley Rosener
+rosener.riley@gmail.com
+The first outflow tracer to be observed was the Ly-α
+line, which traces neutral hydrogen. Escaping neutral
+hydrogen was first observed around the archetypal hot
+Jupiter HD 209458b via absorption of stellar Lyman-α
+(Vidal-Madjar et al. 2003).
+For this planet, Murray-
+Clay et al. (2009) argue that photoevaporation cannot
+strip a significant fraction of mass via atmospheric out-
+flows.
+However, the Ly-α line core is subject to ab-
+sorption by the interstellar medium and contamination
+by geocoronal emissions, making it difficult to observe.
+Nonetheless, Ly-α absorption was later detected in hot
+Jupiter HD 189733b, constraining the atomic hydro-
+gen mass loss rate to be a similar value (Lecavelier Des
+Etangs et al. 2010), as well as in a few smaller planets:
+the warm Neptune GJ 436b (Ehrenreich et al. 2015),
+the mini-Neptune HD 63433c (Zhang et al. 2022c), and
+(tentatively) the mini-Neptune K2-18 b (dos Santos,
+Leonardo A. et al. 2020).
+Building off earlier Ly-α detections, Jensen et al.
+(2012) identified Hα absorption in the outflows of HD
+arXiv:2501.04834v2  [astro-ph.EP]  10 Jan 2025
+
+
+--- Page 2 ---
+2
+189733b and HD 209458b, which were used to estimate
+the hydrogen excitation temperature (Christie et al.
+2013). After detecting Hα and the Na I doublet in tran-
+sit, Casasayas-Barris, N. et al. (2018) recommended fur-
+ther measurements of KELT-20b in Hα and the Balmer
+lines to map the ultra-hot Jupiter’s temperature profile
+and estimate its mass loss rate.
+Seager & Sasselov (2000) first proposed the metastable
+helium (He∗) triplet at 10833 ˚A as a promising tracer
+of the exosphere. Following the analysis of Oklopˇci´c &
+Hirata (2018), metastable helium absorption has been
+detected in various exoplanet outflows, such as in the
+Saturnian exoplanets WASP-107b (Spake et al. 2018)
+and WASP-69b (Nortmann et al. 2018), the hot Jupiter
+HD 189733b (Salz, M. et al. 2018), and various mini-
+Neptunes such as TOI-560b (Zhang et al. 2022b), TOI-
+2134b (Zhang et al. 2023), TOI-1430b (Zhang et al.
+2023), TOI-2018b (Orell-Miquel et al. 2024), and TOI-
+836c (Zhang et al. 2024).
+However, mass loss esti-
+mates for HD 189733b alone vary over multiple orders
+of magnitude from 4 × 109g s−1 (Salz et al. 2016) to
+∼1.1 × 1011g s−1 (Dos Santos et al. 2023), indicating
+significant differences in methodology and modeling that
+must be examined. No clear statistical analysis of what
+precisely drives helium absorption detection and non-
+detection has yet emerged, though some preliminary de-
+mographic surveys have been undertaken (Guilluy et al.
+2024; Orell-Miquel et al. 2024).
+HD 189733b’s escaping atmosphere was modeled
+(Salz, M. et al. 2018) using TPCI, The PLUTO-
+CLOUDY Interface (Salz et al. 2015; Salz et al. 2016).
+TPCI is a 1D radiative-hydrodynamics code that cou-
+ples the hydrodynamics code PLUTO and the gas mi-
+crophysics code CLOUDY to simulate mass loss in a
+self-consistent way. TPCI benefits in drawing from the
+well-tested and widely used code bases of CLOUDY and
+PLUTO, though at the cost of computational speed,
+since neither code was optimized for modeling mass loss.
+Other escaping atmospheres codes exist:
+Caldiroli,
+Andrea et al. (2021) developed the 1D ATES photoion-
+ization hydrodynamics code. This code agrees with the
+TPCI results of Salz et al. (2016) to a factor of two
+while running much more quickly.
+However, it does
+not take into account ion advection during the simu-
+lation, does not include metals, conductivity, and ra-
+dial mixing of different species, and fails to converge for
+the heaviest gas giants that were modeled. Dos Santos,
+Leonardo A. et al. (2022) presented p-winds to retrieve
+the hydrogen and helium mass loss rate in the simple
+1D isothermal Parker wind forward model proposed by
+Oklopˇci´c (2019) and Lamp´on, M. et al. (2020). Linssen
+et al. (2024) combined p-winds and CLOUDY to create
+sunbather, which relaxes the isothermal assumption,
+but is still not self-consistent because the mass loss rate
+is a free parameter (Linssen, D. C. et al. 2022). CHAIN
+(Kubyshkina et al. 2023) is self-consistent, coupling a
+custom hydrodynamic solver with CLOUDY, but it is
+not publicly available. Until this work, TPCI was the
+only publicly available code that self-consistently models
+outflows while including metal heating and cooling, but
+despite that it had not seen widespread adoption, per-
+haps because it is no longer maintained. Building off of
+TPCI, we introduce pyTPCI, a Python code for coupling
+PLUTO and CLOUDY together to model atmosphere
+outflows. It uses up-to-date PLUTO and CLOUDY re-
+leases, includes various fixes to improve stability and
+speed, adds logging capabilities, and features easy-to-
+use template files.
+An extensive literature exists on characterizing exo-
+planet outflows via transmission spectroscopy, but few
+published works have considered outflows in emission
+(e.g. Zhang et al. (2020)). Exoplanet outflows could be
+hot and energetic enough to be emitting significant flux
+in many lines. In this paper, we explore that possibility.
+These emissions would open a new window into escaping
+atmospheres. They could provide valuable information
+about the temperature profile, density, ionization state,
+and metallicity of the hot outflow, in addition to allow-
+ing us to test and refine models of atmospheric escape.
+In this work, we calculate the observability of signals
+from outflow emissions using the updated and improved
+radiative-hydrodynamics simulation pyTPCI to model
+the outflow. We examine the feasibility of observing the
+brightest lines of the simulated emission spectra.
+We describe the features and development of pyTPCI
+in Section 2 and the simulation setup, parameters, and
+choice of our grid of planets in Section 3. We explain
+our calculations of detectability measures in Section 4
+and discuss the implications, observational potential,
+and limitations of these results in Section 5, conclud-
+ing in Section 6. We also briefly examine the effects of
+different stellar spectra in Appendix A.
+2. PYTPCI
+Salz et al. (2015) introduced The PLUTO-CLOUDY
+Interface (TPCI): a 1D radiation-hydrodynamic code
+that couples the hydrodynamic code PLUTO (Mignone
+et al. 2007) to a lightly modified version of the spec-
+tral synthesis code CLOUDY (Ferland et al. 2013) to
+self-consistently simulate outflows. Both PLUTO and
+CLOUDY are mature and sophisticated codes that are
+widely used across many fields of astrophysics.
+In
+TPCI, PLUTO evolves the fluid’s density, pressure,
+and velocity based on heating and cooling rates com-
+
+
+--- Page 3 ---
+3
+puted by CLOUDY. CLOUDY computes heating and
+cooling rates based on the density, pressure, and ve-
+locity profile from PLUTO and a user-specified stel-
+lar spectrum.
+Initially conceived for the interstellar
+medium, physical processes that CLOUDY takes into
+account include photoionization/recombination, colli-
+sional excitation/de-excitation, atomic line cooling, and
+advection.
+TPCI was the most self-consistent open source outflow
+simulation code that we are aware of, but it is no longer
+being maintained.
+While powerful and unique, it did
+have a few weaknesses–it took a long time to run (Salz
+et al. 2016 reports 300,000 CPU hours for their 14 plan-
+ets), and because it is no longer maintained, the versions
+of PLUTO and CLOUDY that it uses are out of date and
+therefore hard to install.
+The programming language
+(C++) may also pose difficulties to users more famil-
+iar with Python.
+To improve upon TPCI, we release
+pyTPCI, a Python wrapper which couples much newer
+versions of PLUTO and Cloudy (4.4-patch1 and C23 re-
+spectively, released in 2020 and 2023). Following TPCI,
+we modified CLOUDY to read in depth-dependent wind
+velocities, and to output useful physical quantities (in-
+cluding mass density, number density, and mean molec-
+ular weight as a function of depth).
+pyTPCI is very
+easy to install, and in most cases converges within 1–2
+days when run on a Core i9 13900k CPU, although high
+metallicities are still prone to numerical instabilities that
+cause the code to crash or take very small timesteps.
+pyTPCI differs from TPCI in several other ways.
+First, when we apply CLOUDY’s computed volumet-
+ric heating rate in PLUTO, we scale the heating rate
+by the instantaneous density (essentially turning it into
+a heating rate per unit mass).
+This makes the code
+much more stable because it prevents a runaway cycle
+whereby heating the gas decreases its density, which in-
+creases the heating rate per unit mass, and so on un-
+til the simulation crashes.
+With this change, we can
+take large timesteps in the initial relaxation phase when
+the stellar irradiation is first turned on and a heating
+wave propagates outward through the simulation do-
+main. Second, instead of simulating the substellar point,
+we simulate a point more representative of the global av-
+erage by adopting a 66◦zenith angle for the incident stel-
+lar irradiation. We adopt this angle because Johnstone
+et al. (2018) found that for Earth’s upper atmosphere, it
+gives a decent approximation of globally averaged pro-
+files. Third, we make the radial coordinate grid twice as
+dense at lower radii due to the extremely high density
+and pressure gradients there, and expand the grid from
+15 Rp to 30 Rp so that the outflow from smaller plan-
+ets can cover the stellar disk. Finally, we add a small
+amount of numerical shear viscosity ν to PLUTO via
+super-time-stepping in an attempt to improve numeri-
+cal stability. The numerical viscosity gives a Reynolds
+number ∆U
+ν
+∼O(1) at a flow speed U of 10 km/s and
+characteristic length ∆of 0.0002 Rp, the smallest grid
+size in our simulation.
+pyTPCI is open source and available on GitHub at
+https://github.com/ideasrule/pyTPCI.
+We encourage
+users to apply it to a wide variety of outflows and explore
+the code’s strength and limitations.
+3. SIMULATION SETUP
+In this section, we describe how we set up the ini-
+tial conditions of pyTPCI, and note some computational
+considerations for running it. The operational parame-
+ters of pyTPCI were chosen via experimentation to op-
+timize simulation stability. When initializing pyTPCI,
+one must specify the temperature and the number den-
+sity of the gas at all radii. The temperature profile is set
+to be a uniform distribution at the planet’s equilibrium
+temperature. The mean molecular weight and hydro-
+gen fraction of the gas are determined by the assumed
+metallicity.
+The surface pressure is determined using
+the ideal gas law and initial temperature, assuming the
+number density at the bottom of the simulation domain
+is 1014 g cm−3. The initial atmospheric pressure profile
+is calculated from hydrostatic equilibrium. The initial
+number density profile in PLUTO is computed from the
+pressure and temperature.
+The construction of our grid—the combinations of
+planets and metallicities—was intended to explore a
+wide parameter space within which escaping metastable
+helium has already been detected.
+Thus, our sys-
+tems consist of two hot Jupiters (HD 189733b and HD
+209458b), two Saturnian exoplanets (WASP-69b and
+WASP-107b), two mini-Neptunes (TOI-560b and TOI-
+1430b), and one ultra-hot Jupiter (HAT-P-32b). The
+systems also cover a diversity of stellar spectral types:
+the majority are K dwarfs, but HD 209458 is a G dwarf
+and HAT-P-32 is a F dwarf.
+For a given system, the planet parameters such as
+planet mass, radius, and semimajor axis were taken from
+the most recent literature.
+Equilibrium temperatures
+were taken from the NASA Exoplanet Archive (https://
+exoplanetarchive.ipac.caltech.edu/), where sources vary
+on their assumptions and modeling methodologies. Gen-
+erally, simulations for each system were run for metal-
+licities of 0×, 1×, 10×, and 100× solar.
+However,
+higher metallicity generally results in worse stability in
+CLOUDY, and sometimes 100× solar metallicity runs
+
+
+--- Page 4 ---
+4
+Table 1. pyTPCI Input Parameters
+System
+Teff,∗
+FXUV
+Roche Radius
+Coriolis Radius
+Distance
+Semimajor Axis
+Mass
+Radius
+Teq
+Metallicity
+(K)
+(ergs s−1 cm−2)
+(RRL/R∗)
+(RC/R∗)
+(pc)
+(AU)
+(M⊕)
+(R⊕)
+(K)
+(× solar)
+HD 189733b
+5012
+18
+0.458
+1.956
+19.76
+0.03126
+370.6
+12.54
+1209
+0, 1, 10
+HD 209458b
+6026
+3.9
+0.336
+1.556
+48.3
+0.04723
+219
+15.1
+1320
+0, 1
+WASP-69b
+4715
+6.8
+0.390
+2.424
+49.96
+0.045
+92
+12.4
+963
+0, 1
+WASP-107b
+4400
+8.0
+0.473
+2.687
+64.74
+0.0553
+37.8
+10.4
+770
+0, 1, 10
+TOI-560b
+4500
+3.5
+0.340
+0.966
+31.6
+0.0596
+11
+2.9
+740
+0, 1, 10, 100
+TOI-1430b
+5037
+9.5
+0.280
+0.925
+41.17
+0.072
+7
+2.04
+800
+0, 1, 10, 100
+HAT-P-32b
+6000
+350
+0.215
+0.309
+289.21
+0.03397
+216
+22.19
+1835
+0, 1
+Note—Fluxes given at 1 au from host system. XUV flux spans 1–504 ˚A. Stellar temperature, distance, semimajor axis, radius,
+and equilibrium temperature are taken from the NASA Exoplanet Archive.
+References—Planet masses. HD 189733b: Addison et al. (2019); HD 209458b: Bonomo et al. (2017); WASP-69b: Stassun
+et al. (2017); WASP-107b: Moˇcnik et al. (2017); TOI-560b: Barrag´an et al. (2022); TOI-1430b (via mass-radius relation):
+Wolfgang et al. (2016); HAT-P-32b: Wang et al. (2019).
+were not able to be run to completion. Runs with non-
+zero metallicity include elements with solar abundances
+greater than 10−5: H, He, O, C, Ne, N, Si, Mg, Fe, and
+S (Chatzikos et al. 2023). We additionally include K on
+the final step CLOUDY is run.
+X-rays and extreme UV (XUV) radiation is predomi-
+nantly responsible for driving the outflow through pho-
+toionization heating (Oklopˇci´c & Hirata 2018). For each
+of our systems, we use stellar XUV spectra (1–912 ˚A)
+from Emission Measure Distribution (EMD) models of
+the stellar corona and chromosphere, as described in
+Sanz-Forcada et al. (2025). For the wavelength range be-
+tween 912 and 50,000 ˚A, we also add contributions from
+the stellar photosphere from the appropriate PHOENIX
+high-resolution synthetic stellar spectra (Husser et al.
+2013). Appendix A tabulates alternative results using
+the stellar spectrum construction method of Salz et al.
+(2016).
+In pyTPCI, we define one time unit to be the approxi-
+mate sound crossing time: the planet radius Rp divided
+by a typical sound speed U = 10 km/s. In most cases,
+we initially run pyTPCI with advection turned off un-
+til t = 100 for a timestep of dt = 0.01, and then run
+it with advection turned on until t = 1, 000. We then
+manually check the simulation to ensure it is converged.
+When the simulation starts and stellar irradiation first
+turns on, a large temperature spike forms near the base
+of the simulation and propagates outward. If advection
+is turned on at this stage, the spike grows extremely
+large and crashes CLOUDY. For less stable cases like
+HD 189733b, we must use a smaller timestep dt = 0.001.
+In order to have the simulation finish reasonably quickly,
+once the density profile does not change much between
+timesteps we start advection earlier at t = 5, then run
+the simulation as long as feasible until the results are
+stable around t = 55.
+A notable phenomenon exhibited by both TPCI and
+pyTPCI is the tendency for stable sound waves to form,
+particularly in simulations of HD 189733b. These are
+artifacts resulting from small numerical errors building
+up in the simulation. We were able to measure the wave
+period and speed, and confirm that the waves were trav-
+eling at the speed of sound. By fixing the time step to
+the wave’s period and restarting pyTPCI from where
+it crashed, we successfully froze the waves in place and
+could thereby run the simulations with larger timesteps
+that were multiples of the period.
+For certain parameter configurations, pyTPCI is in-
+herently unstable, driving the time step to be so low
+that PLUTO crashes very quickly, usually on the first
+few time-steps near t = 0.10.
+This occurs while us-
+ing PLUTO’s “Super-Time-Stepping (STS)” numerical
+integration method for including the viscosity and ther-
+mal conduction terms, which runs much more quickly
+than explicit time-stepping by taking sub-steps in time.
+When this error occurs, the length of the sub-timestep
+calculated to be necessary for a given grid size and diffu-
+sion Courant number of 0.8/Ndim drops below PLUTO’s
+minimum allowed timestep. This is most common for
+very large and hot planets simulated at nonzero metal-
+licity, such as HD 189733b at 100× solar, HD 209458b at
+10× solar, and HAT-P-32b at 10× solar. Those models
+were unable to run to completion, and thus that section
+of the parameter space remains unexplored.
+
+
+--- Page 5 ---
+5
+A successful pyTPCI simulation takes approximately
+48 hours wall time to converge on an Intel Core i9 13900k
+processor with 64 GB RAM. There is significant varia-
+tion in run time because of differing convergence behav-
+ior. For example, HD 189733b at 10× solar metallicity
+takes around 240 hours of wall time.
+4. CALCULATIONS OF OBSERVED SIGNALS
+AND RESULTS
+We analyze the pyTPCI output files in order to cal-
+culate the eclipse depth and signal-to-noise ratio (SNR)
+of various spectral lines from the outflow. We identify
+lines present in the spectrum, and assess the viability
+of detecting any significant signals from our targets us-
+ing 10m class telescopes equipped with high-resolution
+spectrographs with a total throughput of 10%. Some
+specific instruments fit these parameters, namely the
+Keck Planet Finder (KPF) (Gibson et al. 2024) and the
+Near Infrared Spectrometer (NIRSPEC) (McLean et al.
+1998) on Keck. KPF is an example of a modern stabi-
+lized high-resolution optical spectrograph. NIRSPEC is
+an instrument with a proven track record in detecting
+escaping helium, and holds the record for the smallest
+detected helium signal: 0.4% excess absorption from the
+mini-Neptune TOI-2134b (Zhang et al. 2023).
+For KPF, we assume a 10% throughput with a res-
+olution of 98,000.1
+For NIRSPEC, the seeing-limited
+Y-band filter with the 0.720×12” slit has a through-
+put of 19.5%2, but since observations such as Zhang
+et al. (2022b) use the 0.432×12” slit, we adopt a smaller
+throughput of 10% for simplicity. We also assume a res-
+olution of 32,000.
+CLOUDY outputs the emission spectrum in a low-
+resolution (R=300) continuum.tab file. CLOUDY can
+be run at much higher resolution, but it was not de-
+signed for high resolution (M. Chatzikos, private com-
+munication) and can encounter numerical issues. Thus,
+we approximate each emission line with a Gaussian so
+that it has an integrated flux equal to that of the line in
+the pyTPCI spectrum, but with a realistic width. This
+allows us to simulate what a high-resolution spectro-
+graph would observe at the line core without running
+CLOUDY at resolutions of ≳20, 000.
+In order to compute the spectral line width, we take
+into account the effects of thermal broadening at an out-
+flow temperature of Toutflow, wind broadening from the
+velocity of the outflow voutflow, rotational broadening as-
+suming all planets are tidally-locked with an equatorial
+velocity of vrot, and broadening as a result of instru-
+1 https://www2.keck.hawaii.edu/inst/kpf/kpf vs hires.html
+2 https://www2.keck.hawaii.edu/inst/nirspec/sens.html
+mental resolution Rinstr, as shown in Equation 1. This
+computes the spectral line width at wavelength λ for an
+outflow with a mean molecular weight µ.
+σλ = λ
+c ·
+s
+kBToutflow
+µmH
++ v2
+outflow + v2
+rot +
+ c/Rinstr
+2
+√
+2 ln 2
+2
+(1)
+CLOUDY reports flux per unit of emitting area (spec-
+tral radiance). The emitting area could be simply 4πR2
+p
+if the line is optically thin, or it could be larger if the
+photosphere is higher in the outflow. In order to calcu-
+late the photosphere radius, we calculate where each line
+becomes optically thick (τ = 1). For each line, we com-
+pute the absorption cross section σ as a function of the
+line oscillator strength fs, taking the line profile ϕν to
+be a Gaussian with a width given by Equation 1 minus
+the instrumental broadening (Draine 2011, eq. 6.24):
+σ = πe2
+mecfs · ϕν
+(2)
+Integrating from the top to the bottom of the outflow
+and using the depth-dependent number densities from
+CLOUDY output files, we find the optical depth as a
+function of the radial coordinate for each line. If the
+optical depth never exceeds 1, the line is always opti-
+cally thin, and the photosphere radius is taken to be the
+white light radius. In such cases, some of the line emis-
+sion may come not from the outflow, but from the lower
+atmosphere, which we do not model.
+Using the photosphere radius, we find the maximum
+planet-to-star flux ratio at the peak of the Gaussian ob-
+served by the high-resolution spectrograph. We also find
+the narrowband eclipse depth within ±2w of the line
+center, where w is the standard deviation of the Gaus-
+sian. In both cases, we multiply the ratio of planetary
+to stellar surface fluxes by the square of photosphere-
+radius-to-stellar-radius ratio:
+δ(λ) = Fp,λ
+F∗,λ
+·
+Rphotosphere
+R∗
+2
+(3)
+The narrowband eclipse depth, together with the stel-
+lar spectrum, the stellar distance, the total throughput,
+and the observation duration allow us to calculate the
+SNR to which the line can be detected in one eclipse ob-
+servation. We take the observation duration to be twice
+the planet’s eclipse duration, covering the eclipse and an
+equal amount of baseline. The maximum eclipse depths
+are plotted as dots in Figure 1, with the background
+line being the low-resolution (R=300) eclipse depths cal-
+culated from the low-resolution emission spectrum that
+CLOUDY outputs.
+The He∗triplet, 589 nm Na I doublet, and Hα emis-
+sion lines are among the brightest in all systems, as
+
+
+--- Page 6 ---
+6
+103
+104
+Wavelength (Å)
+10-4
+10-3
+10-2
+10-1
+100
+101
+102
+103
+104
+Eclipse Depth (ppm)
+HD 189733b 1× solar Eclipse Depths
+Mg I λ4572Å
+Na I λ5898Å
+Hαλ6565Å 
+K I λ7684Å
+He ∗λ10833Å
+Figure 1. Dots for certain lines are the maximum eclipse
+depths taking into account broadening and resolution effects.
+The line is the R=300 eclipse depths.
+shown in Figure 2. In runs of 1× solar metallicity or
+greater, we also identify bright metal lines, such as the
+K I doublet at 768 nm, and the Mg I forbidden line at
+457 nm. The Na I doublet would be resolved by any
+high-resolution spectrograph, and so we calculate the
+maximum eclipse depths and SNRs for both lines, re-
+porting the maximum eclipse depth and combined SNR.
+The Na I line is especially prominent in the HD 189733b
+10× solar metallicity model, with a SNR of 2.4–higher
+than that of both Hα and He∗.
+The SNRs and maximum eclipse depths in the He∗
+1083 nm triplet, Hα line, the Na I 589 nm doublet, and
+the [Mg I] 457 nm line are reported in Table 2. We also
+report the equivalent width of both the modeled and
+observed 1083 nm helium absorption signals.
+By design, the outflow from every planet we simu-
+late has been detected in the 1083 nm helium triplet
+in transit. To check the accuracy of the pyTPCI simu-
+lations, we compare the absorption signal predicted by
+CLOUDY with the observed absorption. The absorp-
+tion signal is calculated from the number density pro-
+file of metastable state helium nHe∗(r), the temperature
+profile T(r), and the velocity profile v(r), all quantities
+reported by pyTPCI.
+For the majority of planets, there is at least one
+metallicity at which the predicted He∗equivalent width
+in absorption is very close to the observed equivalent
+width. For instance, the observed helium signal for HD
+102
+103
+104
+105
+106
+107
+Wavelength(Å)
+10-24
+10-21
+10-18
+10-15
+10-12
+10-9
+10-6
+10-3
+Flux at 1 au (ergs · cm−2 · s−1 · Å −1)
+HD 189733b 1× solar
+Integrated Flux
+(ergs·cm−2 · s−1)
+Mg I 1.6e-04
+Na I 3.2e-04
+Hα 1.1e-03
+Ca II 9.5e-05
+He ∗ 2.1e-03
+Figure 2. The emission spectrum of HD 189733b from a 1×
+solar metallicity model. A variety of metal lines are present,
+including an O I blended line at 6300 ˚A.
+189733b has an equivalent width of 11 m˚A, in between
+our 1× solar metallicity model (13 m˚A) and our 10×
+solar metallicity model (7.5 m˚A). Perhaps not coinci-
+dentally, JWST/NIRCam transmission spectra of the
+planet indicate a metallicity of 3–5× solar (Fu et al.
+2024).
+HD 209458b is fit well with zero metals, hav-
+ing a predicted equivalent width of 4.1 m˚A compared
+to an observed width of 3.65 m˚A. This does not agree
+with JWST/NIRCam transmission spectra estimating a
+metallicity of 4+5
+−2× solar (Xue et al. 2024). The mini-
+Neptunes TOI-560b and TOI-1430b run at 100× solar
+metallicity both match their observed equivalent widths
+very well, with TOI-560b having a 8% difference and
+TOI-1430b having a < 1% difference The systems of
+WASP-107b, WASP-69b, and HAT-P-32b are not pre-
+dicted well at any metallicity, but we suspect this is a
+result of gas tails and extended features not being mod-
+eled properly in 1D pyTPCI, as is discussed further in
+Section 5.1.
+An overview of the relationship between
+planet metallicity and He∗equivalent width is graphed
+in Figure 3.
+5. DISCUSSION
+Here, we consider some implications of these pyTPCI
+results and what they imply about the detectability of
+outflow emission signals, as well as the limitations of
+this work, such as the simulation dimensionality, lack of
+
+
+--- Page 7 ---
+7
+Table 2. Outflow Calculations
+Planet
+Metallicity
+SNR He∗
+Depth
+SNR Hα
+Depth
+SNR Na
+Depth a
+SNR Mg
+Depth
+He Abs
+W
+Wobs
+(× solar)
+(ppm)
+(ppm)
+(ppm)
+(ppm)
+(%)
+(m˚A)
+(m˚A)
+HD 189733b
+0
+0.76
+87
+0.49†
+69†
+–
+–
+–
+–
+2.2
+14
+11
+HD 189733b
+1
+1.3
+170
+0.35†
+52†
+0.15
+25
+6.9 × 10−2 †
+19†
+2.0
+13
+11
+HD 189733b
+10
+0.58
+70
+0.19†
+86†
+2.4
+410
+0.42†
+110†
+1.0
+7.5
+11
+HD 209458b
+0
+0.23†
+29†
+0.25†
+31†
+–
+–
+–
+–
+0.65
+4.1
+3.7
+HD 209458b
+1
+0.18†
+22†
+0.02†
+2.1†
+6.2×10−2
+8.5
+0.24†
+27†
+1.5
+11
+3.7
+WASP-69b
+0
+0.16
+49
+0.17†
+54†
+–
+–
+–
+–
+11
+93
+29
+WASP-69b
+1
+0.17
+51
+0.15†
+43†
+0.23
+83
+0.19†
+74†
+12
+96
+29
+WASP-107b
+0
+2.7
+1400
+0.13†
+78†
+–
+–
+–
+–
+37
+530
+100
+WASP-107b
+1
+2.1
+1000
+0.12†
+64†
+0.24
+150
+0.15†
+100†
+39
+560
+100
+WASP-107b
+10
+7.1
+3500
+2.4×10−3†
+1.6†
+7.0
+6800
+1.1×10−2
+17
+63
+820
+100
+TOI-560b
+0
+1.8×10−3
+0.52
+3.8×10−3†
+1.0†
+–
+–
+–
+–
+4.6
+36
+7.8
+TOI-560b
+1
+2.9×10−3
+0.84
+3.6×10−3†
+0.90†
+3.3×10−3
+1.5
+6.0×10−3†
+2.5†
+4.7
+37
+7.8
+TOI-560b
+10
+2.5×10−2
+7.1
+4.3×10−3†
+1.2†
+0.18
+47
+6.5×10−3†
+2.9†
+14
+120
+7.8
+TOI-560b
+100
+8.0 × 10−4 †
+0.22†
+8.8 × 10−4 †
+0.2†
+0.34
+16
+1.5 × 10−3 †
+0.70†
+1.3
+8.4
+7.8
+TOI-1430b
+0
+3.4×10−3
+0.77
+2.1×10−3†
+0.60†
+–
+–
+–
+–
+3.3
+24
+7.3
+TOI-1430b
+1
+6.0×10−3
+1.4
+2.4×10−3†
+0.60†
+9.6×10−3
+3.3
+3.6×10−3†
+1.3†
+4.3
+34
+7.3
+TOI-1430b
+10
+4.2×10−2
+9.5
+2.1×10−3†
+0.50†
+0.26
+87
+3.2×10−3†
+1.1†
+37
+350
+7.3
+TOI-1430b
+100
+4.0 × 10−4 †
+0.10†
+4.4 × 10−4 †
+0.10†
+3.1 × 10−2
+11
+7.3 × 10−4 †
+0.30†
+1.1
+7.3
+7.3
+HAT-P-32b
+0
+2.30
+880
+1.1
+600
+–
+–
+–
+–
+36
+480
+120
+HAT-P-32b
+1
+11
+3800
+3.5
+2000
+0.47
+170
+4.5×10−3
+3.5
+89
+1500
+120
+Note—SNRs are calculated assuming a conventional eclipse observation spanning the eclipse plus an equal amount of baseline.
+Under optimistic assumptions, the SNRs can be increased 2–3× by skipping the baseline and observing for several hours before
+or after eclipse (see Subsection 5.2).
+Note—The simulations with very good fit to the observed He∗equivalent width are bolded. † indicates that the line is optically
+thin.
+aThe maximum eclipse depth between the two Na I lines are reported here.
+HD 189b
+HD 209b
+W-69b
+W-107b
+TOI-560b
+TOI-1430b HAT-P-32b
+101
+102
+103
+He ∗ Equivalent Width (mÅ)
+0× solar
+1× solar
+10× solar
+100× solar
+observed
+Figure 3. Predicted He∗equivalent width at varying metal-
+licities compared to the observed equivalent width. Note the
+good agreement of HD 189733b at 1× and 10× solar, HD
+204958b at 0×, and TOI-560b and TOI-1430b at 100× so-
+lar.
+molecules, lack of magnetic fields, and the uncertainty
+in stellar XUV flux.
+5.1. Observability
+A few trends are apparent after examining Table
+2, which shows the eclipse depths and SNRs of the
+strongest lines. For example, higher metallicity tends
+to be correlated with stronger Na lines, but the outflow
+is sometimes so strongly suppressed at 100× solar metal-
+licity that the line is weaker than at 10× solar metallic-
+ity, as illustrated in Figure 5. This observation is also
+true for [Mg I] at 457 nm, but its SNRs and depths tend
+to be smaller, and the line is more frequently optically
+thin. Outflow suppression at high metallicities happens
+for a variety of reasons, including the onset of signifi-
+cant metal cooling and the decrease in easily ionizable
+electrons per unit mass. (For a detailed discussion, see
+Zhang et al. (2022b); Linssen et al. (2024); Zhang et al.
+
+
+--- Page 8 ---
+8
+100
+101
+Radius (RP)
+10-12
+10-8
+10-4
+100
+104
+Optical depth
+HD 189733b 1× solar
+Photosphere Radius
+He ∗ 1.244
+Hα 1.000
+Na I 1.273
+K I 1.226
+Mg I 1.000
+Figure 4. Optical depths of various spectral lines for HD
+189733b, 1× solar metallicity. The dashed line indicates τ =
+1.
+(2024); see also Yoshida et al. (2024) about the suppres-
+sive effect of molecule cooling.)
+The Hα line is nearly always optically thin (except
+for HAT-P-32b) and weak, with its strength not varying
+much with metallicity. An optically thin line indicates
+that some line emission could be coming from the lower
+hydrostatic atmosphere, not the outflow.
+We do not
+simulate the hydrostatic atmosphere, and cannot predict
+exactly how it will behave. However, we do expect the
+lower atmosphere to be much colder and have smaller
+velocities than the outflow, implying that lines formed
+in this region should be very weak and narrow.
+For
+example, if we approximate the lower-atmosphere emis-
+sion from HD 189733b as a blackbody, it would have an
+eclipse depth less than 0.1 ppm at the Hα wavelength,
+making it negligible compared to the emission from the
+outflow. An example of optical depth plotted against
+radius for different spectral lines is presented in Figure
+4, with the photosphere radius (τ = 1) noted for each
+line.
+The peak outflow temperature tends to decrease with
+metallicity and the peak outflow velocity is relatively
+stable across all metallicities, as tabulated in Table 3
+and further discussed in Section 5.3. An array of outflow
+temperature and density profiles are shown in Figure 6
+for the systems at metallicities best matching their He∗
+widths.
+The system with the most observational potential for
+emission is HD 189733b, with a rather strong signal for
+Na I in the 10× solar metallicity run, giving a SNR of 2.4
+and eclipse depth of 410 ppm. This is the largest eclipse
+depth for any run that predicts a He∗absorption signal
+close to the observed signal. HD 189733b also possesses
+weak but potentially observable signals for He∗in its 1×
+and 10× solar metallicity runs. For 1× solar, we find a
+He∗SNR of 1.3 with a maximum eclipse depth of 170
+ppm, and for 10× solar, we find a SNR of 0.58 with a
+maximum eclipse depth of 70 ppm. Hα is less observable
+for both runs, at SNRs of 0.35 and 0.19 and with eclipse
+depths below 100 ppm. Line emission from WASP-107b
+and HAT-P-32b have large SNRs ranging from 2 to 11
+in He∗, but we believe these ought to be disregarded.
+HD 189733b has the best chance of outflow emission
+signal detection, potentially reaching a strong SNR of
+5.4 for Na I emission after observing 5 eclipses.
+Its
+SNRs for He∗are somewhat weak at SNR ∼1, opti-
+mistically getting a strong signal after observing about
+20 eclipses—a perhaps unrealistic aim. Its Hα SNRs are
+all below 1.
+However, the predicted eclipse depth of ∼0.041% for
+HD 189733b in Na I is very similar in magnitude to
+the systematic noise of ∼0.05% on the NIRSPEC high-
+resolution transit spectra from helium observations of
+HD 189733b (Zhang et al. 2022a, Fig. 2). This indicates
+the Na eclipse would not be easily observable, and the
+He∗eclipse, with a smaller predicted depth of ∼0.02%,
+would be even harder to observe. Whether stacking mul-
+tiple eclipses would reduce the systematic noise depends
+on the nature of the noise–is it independent from visit to
+visit, or is it highly correlated? If the error does decrease
+as the square root of the number of eclipses, it may be
+possible to confidently detect the deeper Na I line in
+5 eclipses. Comparing the high-resolution He∗transit
+spectra of the mini-Neptunes TOI-560b and TOI-1430b
+(Zhang et al. 2023, Fig. 3) with the consistently tiny
+predicted eclipse depths and SNRs across all lines con-
+firms that there is no chance of detecting emissions from
+these planets.
+For systems with particularly extended exospheres or
+gas tails—WASP-107b (Spake et al. 2018), WASP-69b
+(Nortmann et al. 2018), and HAT-P-32b (Czesla, S.
+et al. 2022)—the calculated SNRs appear as large as
+11 for HAT-P-32b in He∗or 7.1 for WASP-107b in He∗.
+How reliable are these results? We used the predicted
+number density profile of He∗to predict the helium ab-
+sorption signal and found it much higher than the ob-
+served value, indicating that these simulations should
+not be expected to produce realistic estimates of emis-
+sion. One possible reason is that pyTPCI, as a 1D simu-
+lation, assumes spherical symmetry. In reality, Coriolis
+forces would shape gas into a comet-like shape, shrink-
+ing the estimated emitting area and resultant emission
+signal. This is especially important for HAT-P-32b since
+it has a stellar radius much larger than its Coriolis turn-
+ing radius, which depends on the orbital period Torb and
+average outflow velocity; see Eq. 4 and refer to Table 1
+
+
+--- Page 9 ---
+9
+for values.
+RCoriolis = voutflowTorb
+4π
+(4)
+We might expect that a Coriolis radius smaller than the
+stellar radius implies a violation of 1D spherical symme-
+try, explaining the mismatch for HAT-P-32b. However,
+this trend does not hold for WASP-107b and WASP-
+69b, which inversely have the largest Coriolis-radius-
+to-stellar-radius ratios out of all the systems.
+This
+could suggest different reasons for the observational-
+theoretical mismatch for HAT-P-32b than for WASP-
+107b and WASP-69b, despite the similarly large sim-
+ulated equivalent widths and absorption fractions. Re-
+gardless, 3D modeling appears to be required to produce
+accurate results for these systems.
+Na and He∗emission lines are on the edge of de-
+tectability with the Keck telescopes, and so there is
+cause to be optimistic about the next generation of ex-
+tremely large telescopes, which will possess much larger
+apertures coupled with state-of-the-art high-resolution
+spectrographs.
+As SNR scales linearly with aperture,
+even if throughput does not improve at all, the 40m di-
+ameter ELT would attain a SNR of 10 in Na and of 5.2 in
+He∗for HD 189733b at 1× solar metallicity, a factor of
+four greater than the SNR achievable with Keck. This
+calculation makes the optimistic assumption that sys-
+tematics will not be the limiting factor to the precision
+achievable by the ELTs.
+In this work, we chose to simulate planets with de-
+tected He∗absorption.
+Although many of the fac-
+tors that favor He∗absorption detectability also favor
+emission detectability–such as large outflow rates, large
+Rp/Rs, and proximity to Earth–others (such as a K stel-
+lar type) may not. We encourage further work on ex-
+ploring the detectability of outflow emission from very
+different systems. Notably, our work does not simulate
+any exoplanets around M dwarfs. A natural next step is
+to simulate the recently discovered Jupiters orbiting M
+dwarfs (Kanodia et al. 2024; Hotnisky et al. 2024), which
+may be excellent candidates for emission searches due to
+their high Rp/Rs; alternatively, they may be poor can-
+didates owing to their distance and the low luminosity
+of their host stars.
+5.2. Boosting SNR
+The SNRs in Table 2 were calculated by assuming
+a standard eclipse observation:
+observing during the
+eclipse, and also during baseline on either side of eclipse.
+We assumed that the total baseline duration is equal to
+the eclipse duration. We can gain a factor of nearly
+√
+2
+in SNR by observing a very long baseline and assuming
+(very optimistically) that there is no significant stellar,
+instrumental, or telluric variability during this interval.
+HD 189b
+HD 209b
+W-69b
+W-107b
+TOI-560b
+TOI-1430b HAT-P-32b
+100
+101
+102
+103
+104
+Eclipse Depth (ppm)
+Na I λ 5898 Å Emission
+Metallicity
+1×
+10×
+100×
+Figure 5. Eclipse depths for Na I at varying metallicities.
+Among the metallicities we successfully tried, the eclipse
+depth peaks at 10× solar for every planet. Not all systems
+were run at all metallicities. Refer to Table 2 for other emis-
+sion lines.
+Another way to boost the SNR is to adopt a different
+observation strategy: observe the planet either before or
+after the eclipse for much longer than the eclipse dura-
+tion. The planet signal would then be disentangled from
+the stellar spectrum by relying on the radial acceleration
+of the planet. The mean spectrum would be subtracted
+from each individual spectrum, and principal component
+analysis could be used to subtract off telluric and stellar
+variability. The cleaned residual spectra could then be
+shifted into the planet frame and stacked. This strategy
+is very similar to high-resolution cross-correlation spec-
+troscopy, except that cross correlation is not necessary.
+It has the potential to boost SNR significantly. For ex-
+ample, HD 189733b has an eclipse duration of 1.8 h, but
+HD 189733 is observable for 8.5 hours from Keck at air-
+masses below 2. This shift-and-stack approach can po-
+tentially boost the SNR by a factor of
+p
+8.5/1.8
+√
+2 = 3
+(the factor of
+√
+2 is because one no longer needs to com-
+pare to a baseline). Under this scenario, the Na emission
+from HD 189733b would be detectable at 7.2σ (assuming
+10× solar metallicity).
+In practice, there are weaknesses with the shift-and-
+stack approach that diminish the SNR gain.
+8.5 h
+is likely overly optimistic because it is hard to find
+nights where HD 189733b is near eclipse and also at
+low airmass for 8.5 hours.
+The airmass, star, instru-
+ment, and Earth’s atmosphere all change more on 8-hour
+timescales than 3.6-hour timescales. PCA can subtract
+off most of the variability, but it also subtracts some
+percentage of the signal. It is also not clear that the
+radial velocity of the outflow emission lines follows the
+radial velocity of the planet. In absorption, the 1083 nm
+helium line often diverges significantly from the planet’s
+radial velocity track due to outflow morphology, such as
+comet-like tails (WASP-107b is a striking example; see
+Kirk et al. 2020). All in all, it is plausible that one could
+
+
+--- Page 10 ---
+10
+2.5
+5.0
+7.5
+10.0
+12.5
+15.0
+Radius (RP)
+0
+2000
+4000
+6000
+8000
+10000
+12000
+Outflow Temperature (K)
+ 
+HD 189733b 1×
+HD 209458b 0×
+WASP-69b 0×
+WASP-107b 0×
+TOI-560b 100×
+TOI-1430b 100×
+HAT-P-32b 0×
+100
+101
+Radius (RP)
+10-19
+10-17
+10-15
+10-13
+10-11
+10-9
+Outflow Density (g cm−3)
+ 
+Figure 6. Outflow CLOUDY temperature and PLUTO density profiles for each system at a metallicity that best explains the
+observed He∗equivalent width in absorption.
+see a SNR gain from this alternative observation strat-
+egy, but it is riskier. One other possible benefit from
+this strategy is that if–contrary to our predictions–the
+emission signal is very strong, measuring the emission
+spectrum over time could provide kinematic informa-
+tion about the outflow structure (as it does for 1083 nm
+helium absorption measurements).
+5.3. Limitations
+Mainly intended as a an order-of-magnitude investiga-
+tion into observability, there are substantial limitations
+of this work. On one hand, the fact that pyTPCI is 1D
+fundamentally limits some of the phenomena that can
+be modeled, such as the asymmetric line profiles of sys-
+tems with gas tails like WASP-69b, which require a 2D
+simulation to capture day-night advection and a 2.5D
+simulation to include Coriolis forces (Wang & Dai 2021).
+On the other hand, pyTPCI’s dimensionality allows it to
+include far more detailed atomic physics and radiative
+transfer, meaning it has complementary strengths and
+weaknesses to 3D models.
+CLOUDY possesses the ability to run spectral syn-
+thesis with molecules enabled, including species like H2
+and CO, but all of our pyTPCI simulations were run
+with molecules turned off due to issues with stability
+and convergence. It is possible that some molecules are
+entrained in the outflow at the pressures probed by the
+simulation domain, and it is worth noting that the pres-
+ence of molecules could drive substantial cooling of the
+outflow, suppressing the mass loss rate (Yoshida et al.
+2024). Fortunately, expanding this study with molecules
+enabled should be theoretically possible.
+Additionally, CLOUDY does not take into account
+mass fractionation—it assumes a hydrodynamic outflow
+in which all species remain well mixed, but in reality,
+lighter elements are preferentially lost. This likely re-
+sults in overestimating the emission from metal lines
+like Na. However, mass fractionation is only significant
+for weak outflows, which would be unfavorable emis-
+sion targets anyhow. We briefly demonstrate that mass
+fractionation is usually unimportant by comparing the
+diffusion-limited escape rate and the estimated escape
+rate. Following Zhang et al. (2024), we find that the
+diffusion-limited mass loss rate can be approximated as
+the following, for a planet mass Mp, outflow tempera-
+ture T, and mean molecular weight µ:
+ΦDL = (1.3 × 108g · s−1)
+ Mp
+M⊕
+
+T
+103K
+−0.25
+µ
+(5)
+As an example of a hot Jupiter, for HD 209458b at
+solar metallicity, we find a diffusion-limited mass rate
+of 2.0 × 1010g s−1, compared to the simulated mass loss
+rate 2.7 × 1011g s−1 and an estimated value spanning
+0.42 −1.00 × 1011g s−1 (Lamp´on et al. 2021). For most
+simulations, the estimated mass loss rate is much larger
+than the diffusion-limited mass loss rate. However, the
+estimated mass loss rate for TOI-1430b at 100× solar
+is only 3× greater than the diffusion-limited rate, and
+
+
+--- Page 11 ---
+11
+for TOI-560b at 100× solar is only 1.5× greater than
+the diffusion-limited rate. For HD 189733b at 10× solar
+metallicity, we find a diffusion-limited mass loss rate of
+3.8 × 1010g s−1, about 200× greater than the simulated
+mass loss rate.
+This holds for all HD 189733b runs,
+though the highest metallicity run most badly violates
+the hydrodynamic assumption. These diffusion-limited
+calculations assume that the outflow is neutral and do
+not consider the high ionization rate at higher radii
+which would occur in a true outflow. This would sub-
+stantially lower the diffusion-limited mass loss rate be-
+cause ion-ion interactions are far stronger than neutral-
+neutral interactions. HD 189733b in particular becomes
+highly ionized at especially low radii.
+For 1× solar
+metallicity, 10% of hydrogen is ionized at 1.26 plane-
+tary radii, and 50% ionized at 1.28 planetary radii. More
+work remains in order to conclude whether diffusive sep-
+aration is indeed significant for HD 189733b. The sim-
+ulated mass loss rate, diffusion-limited mass loss rate,
+estimated mass loss rate from the literature, and peak
+outflow temperature and velocity are reported in Table
+3.
+Mass loss rate estimates for HD 189733b vary widely,
+but neither the HD 189733b 1× solar model at 5.7 ×
+109g s−1 nor the 10× solar model at 1.9×108g s−1 agree
+well with 1.1 × 1011g s−1 from Lamp´on et al. (2021).
+However, the 1× solar model agrees well with a different
+estimate of 5 × 109g s−1 from Zhang et al. (2022a). The
+mass loss rate for HD 209458b 0× falls within the range
+established in Lamp´on et al. (2021). For TOI-560b 100×
+and TOI-1430b 100×, our mass loss rates are smaller
+than the estimates of Zhang et al. (2023) by an order
+of magnitude, likely because of the much higher metal-
+licities. Though we do not have models of WASP-69b,
+WASP-107b, and HAT-P-32b with good agreement to
+the observed He∗equivalent width, the simulated mass
+loss rates generally fall near other literature estimates
+(Wang & Dai 2021; Spake et al. 2018; Lamp´on, M. et al.
+2023).
+Another limitation of our simulations is that we do
+not systematically consider the effects of magnetic fields,
+which Adams (2011) suggests should significantly im-
+pact the outflow geometry of hot Jupiters. This is val-
+idated by 3D radiative magnetohydrodynamic simula-
+tions (e.g.
+Arakcheev et al. (2017); Owen & Adams
+(2019); Carolan et al. (2021); Schreyer et al. (2023)).
+In general, the problem of simulating outflow magnetic
+fields remains to be explored at depth, but most stud-
+ies agree that the presence of a planetary magnetic field
+would reduce mass loss rates (Brain et al. 2024).
+Additionally, X-ray and EUV spectra of a system’s
+host star are necessary for obtaining precise number den-
+sities and mass loss rates, but in most cases these fluxes
+remain uncertain within a factor of at least a few, as
+discussed in France et al. (2022). Some systems possess
+XMM-Newton X-ray measurements, but no telescope
+capable of observing stellar EUV emission is currently in
+operation. The impact of varying XUV stellar spectra
+is briefly examined in Appendix A, but usually higher
+XUV flux results in a higher eclipse depth and SNR.
+Finally, this work also leaves some of the high-
+metallicity parameter space unexplored due to stabil-
+ity concerns with pyTPCI. For example, based on our
+current equivalent width results we do not think it par-
+ticularly likely that a system like WASP-69b would be
+best fit by 10× solar metallicity, but it would still be
+appropriate to test that possibility regardless.
+6. CONCLUSION
+In this work, we examine the detectability of emis-
+sions from exoplanet outflows using the new radiative-
+hydrodynamics code pyTPCI. Using it, we simulate
+seven exoplanets: two hot Jupiters (HD 189733b and
+HD 209458b), two Saturnian exoplanets (WASP-69b
+and WASP-107b), two mini-Neptunes (TOI-560b and
+TOI-1430b) and one ultra-hot Jupiter (HAT-P-32b) at
+varying metallicities ranging from 0× to 100× solar.
+We introduce various features to stabilize TPCI (Salz
+et al. 2015) and increase its ease of use, and addition-
+ally take measures to increase accuracy in a 1D simula-
+tion, such as setting the illumination angle to 66◦. We
+have released pyTPCI on GitHub (https://github.com/
+ideasrule/pyTPCI) where it is available for everyone to
+use, and will be further maintained.
+We obtain continuum emission spectra from pyT-
+PCI and calculate the eclipse depths and signal-to-
+noise ratios for various spectral lines.
+We perform
+these detectability calculations for a 10m class telescope
+with a 10% throughput high-resolution spectrograph,
+similar to the specifications of KPF or NIRSPEC on
+Keck. We determine simulation accuracy by comparing
+the metastable helium absorption equivalent width pre-
+dicted by our simulations with the observed equivalent
+widths. We get simulations that predict helium equiv-
+alent widths very close to the observed values for HD
+189733b, HD 209458b, TOI-560b, and TOI-1430b. We
+believe the emission predictions for these planets are the
+most trustworthy.
+We find that the most detectable planet simulated is
+HD 189733b, with the most detectable lines being the
+589 nm Na doublet with a eclipse depth of 410 ppm and
+SNR of 2.4, and the metastable helium triplet with an
+
+
+--- Page 12 ---
+12
+Table 3. Outflow Properties
+System
+Metallicity
+˙msim
+˙mDL
+˙mlit
+Toutflow
+voutflow
+(× solar)
+(g/s)
+(g/s)
+(g/s)
+(K)
+(km/s)
+HD 189733b
+0
+1.1×1010
+3.2×1010
+1.1×1011
+12,400
+70
+HD 189733b
+1
+5.7 × 109
+3.2 × 1010
+1.1 × 1011
+11,500
+70
+HD 189733b
+10
+1.9 × 108
+3.8 × 1010
+1.1 × 1011
+9,700
+71
+HD 209458b
+0
+1.1 × 1011
+2.0 × 1010
+0.42 −1.00 × 1011
+9,500
+55
+HD 209458b
+1
+2.7×1011
+2.0×1010
+0.42-1.00×1011
+8,900
+55
+WASP-69b
+0
+7.5×1010
+8.3×109
+1×1011
+9,700
+55
+WASP-69b
+1
+7.2×1010
+8.5×109
+1×1011
+9,000
+54
+WASP-107b
+0
+2.1×1011
+3.7×109
+1×1010–3×1011
+7,200
+30
+WASP-107b
+1
+2.3×1011
+3.7×109
+1×1010–3×1011
+7,200
+30
+WASP-107b
+10
+9.2×1011
+4.2×109
+1×1010–3×1011
+6,900
+31
+TOI-560b
+0
+5.4×109
+1.2×109
+2.3×1010
+4,000
+11
+TOI-560b
+1
+5.6×109
+1.3×109
+2.3×1010
+3,900
+11
+TOI-560b
+10
+1.9×1010
+1.5×109
+2.3×1010
+3,400
+12
+TOI-560b
+100
+3.7 × 109
+2.5 × 109
+2.3 × 1010
+4,700
+8.1
+TOI-1430b
+0
+3.9×109
+8.4×108
+2.6×1010
+3,100
+8.4
+TOI-1430b
+1
+5.6×109
+8.5×108
+2.6×1010
+3,000
+9.3
+TOI-1430b
+10
+4.4×1010
+9.6×108
+2.6×1010
+3,000
+11
+TOI-1430b
+100
+5.4 × 109
+1.7 × 109
+2.6 × 1010
+4,400
+7.9
+HAT-P-32b
+0
+1.1×1013
+2.2×1010
+1.30×1013
+5,800
+22
+HAT-P-32b
+1
+5.4×1013
+2.2×1010
+1.30×1013
+6,500
+25
+Note—The simulations with very good fit to the observed He∗equivalent width are bolded. The listed temperatures and
+velocities are the peak values.
+References—Estimated mass loss rates from the literature. HD 189733b: Lamp´on et al. (2021); HD 209458b: Lamp´on et al.
+(2021); WASP-69b: Wang & Dai (2021); WASP-107b: Spake et al. (2018); TOI-560b: Zhang et al. (2023); TOI-1430b: Zhang
+et al. (2023); HAT-P-32b: Lamp´on, M. et al. (2023).
+eclipse depth of 170 ppm and a SNR of 1.3. These sig-
+natures would only be marginally detectable with Keck
+with multiple eclipse observations, but they would be
+much more detectable using the next generation of ex-
+tremely large telescopes.
+Our simulations are limited by their lack of mag-
+netic fields, stellar wind, day-night inhomogeneity, and
+molecules.
+They do not include mass fractionation,
+though we do not expect diffusive separation to be sig-
+nificant in most systems besides perhaps HD 189733b.
+pyTPCI—like all mass loss simulations—requires X-ray
+and EUV spectra of the host star, though these are fre-
+quently uncertain to factors of at least a few.
+Some
+systems like WASP-69b, WASP-107b, and HAT-P-32b
+likely require 3D simulations to fully account for the
+asymmetric and extended outflow features.
+In order to put these results to the test, we encourage
+further modeling as well as observations of exoplanet
+outflow emissions. Observations of these outflow emis-
+sions would enable further development of models, im-
+proving our understanding of the mass loss mechanisms
+that likely help carve the radius valley.
+This
+work
+was
+funded
+by
+XMM-Newton
+grant
+80NSSC24K0333.
+We thank Jorge Sanz-Forcada for
+providing XUV spectra for our selection of planets be-
+fore the publication of Sanz-Forcada et al. (2025). MZ
+thanks the Heising-Simons Foundation for funding his
+51 Pegasi b fellowship. RR thanks Fausto Cattaneo and
+Leslie Rogers for their feedback on prior iterations of
+this project.
+Software:
+pyTPCI (Zhang & Rosener 2024), TPCI
+(Salz et al. 2015), Cloudy 23 (Chatzikos et al. 2023),
+PLUTO 4.4 (Mignone et al. 2007), PHOENIX (Husser
+et al. 2013)
+
+
+--- Page 13 ---
+13
+APPENDIX
+A. OUTFLOW SIMULATIONS USING ALTERNATIVE XUV SPECTRA
+In earlier stages, pyTPCI was run using stellar spectra constructed by the method described in Salz et al. (2016),
+as opposed to the XUV spectra from Sanz-Forcada et al. (2025). Table 4 reports results from selected earlier runs of
+pyTPCI. Some of them were run at an illumination angle of 0◦instead of 66◦suggested by Johnstone et al. (2018), to
+explore the effects of this simplification.
+In Figure 8, we compare pyTPCI runs of HD 189733b and HD 209458b with the TPCI results that Salz et al.
+(2016) obtained. We performed both pyTPCI runs at 0× solar metallicity at 0◦irradiation angle, just as in Salz et al.
+(2016). This shows excellent agreement between the two systems, as we should expect for a similar simulation setup
+and identical stellar spectra.
+100
+101
+10-18
+10-15
+10-12
+Density (g cm−3)
+ 
+pyTPCI
+Salz16
+100
+101
+10-6
+10-2
+102
+Velocity (km s−1)
+100
+101
+Planet Radius (RP)
+10-7
+10-4
+10-1
+Pressure (g cm−1 s−2)
+100
+101
+Planet Radius (RP)
+103
+104
+Temperature (K)
+HD 189733b Outputs Comparison
+Figure 7. Data outputs for HD 189733b pyTPCI simulations compared to those of Salz et al. (2016), run at 0× solar metallicity
+and 0◦illumination angle.
+As expected, the eclipse depths and SNRs for 0◦illumination angle runs are larger. For example, the HD 209458b
+0× solar metallicity run has an eclipse depth of 400 ppm and SNR of 0.75 in He∗at the substellar point, compared
+with an eclipse depth of 24 ppm and SNR of 0.19 at 66◦.
+For the HD 189733b stellar spectrum, the XUV flux (1–504 ˚A) at 1 AU of the previous spectrum was 13 ergs·s−1·
+cm−2, compared with a flux of 18 ergs·s−1· cm−2 for the Sanz-Forcada et al. (2025) spectrum. These flux differences
+are significant but not atypical for high-energy stellar spectra. Notably, most of the Sanz-Forcada spectra (except
+in the case of HD 189733b) have lower XUV fluxes than the corresponding Salz spectra by at least 40%. Generally,
+higher XUV flux results in higher eclipse depths and SNRs. For example, for WASP-107b 0× solar, the model using
+the the Salz stellar spectrum with 60% greater flux has a He∗eclipse depth and SNR 50% greater than the model with
+the Sanz-Forcada spectrum: 1400ppm and 2.7 for the former compared to 4.0 and 2100ppm for the latter. However,
+this trend is broken by some of the TOI-560b and TOI-1430b runs.
+The mechanisms producing the impossibly large He∗absorption fractions and equivalent widths for WASP-69b,
+WASP-107b, and HAT-P-32b described in Section 5.1 are also at work here, as evidenced by the eclipse depth of 13000
+ppm and SNR of 27 for HAT-P-32b at 1× solar, as the most drastic example.
+
+
+--- Page 14 ---
+14
+100
+101
+10-17
+10-14
+10-11
+Density (g cm−3)
+ 
+pyTPCI
+Salz16
+100
+101
+10-5
+10-2
+101
+Velocity (km s−1)
+100
+101
+Planet Radius (RP)
+10-7
+10-4
+10-1
+Pressure (g cm−1 s−2)
+100
+101
+Planet Radius (RP)
+103
+104
+Temperature (K)
+HD 209458b Outputs Comparison
+Figure 8. Data outputs for HD 209458b pyTPCI simulations compared to those of Salz et al. (2016), run at 0× solar metallicity
+and 0◦illumination angle.
+REFERENCES
+Adams, F. C. 2011, The Astrophysical Journal, 730, 27,
+doi: 10.1088/0004-637x/730/1/27
+Addison, B., Wright, D. J., Wittenmyer, R. A., et al. 2019,
+PASP, 131, 115003, doi: 10.1088/1538-3873/ab03aa
+Arakcheev, A. S., Zhilkin, A. G., Kaigorodov, P. V.,
+Bisikalo, D. V., & Kosovichev, A. G. 2017, Astronomy
+Reports, 61, 932, doi: 10.1134/S1063772917110014
+Barrag´an, O., Armstrong, D. J., Gandolfi, D., et al. 2022,
+MNRAS, 514, 1606, doi: 10.1093/mnras/stac638
+Bonomo, A. S., Desidera, S., Benatti, S., et al. 2017, A&A,
+602, A107, doi: 10.1051/0004-6361/201629882
+Brain, D. A., Kao, M. M., & O’Rourke, J. G. 2024,
+Exoplanet Magnetic Fields.
+https://arxiv.org/abs/2404.15429
+Caldiroli, Andrea, Haardt, Francesco, Gallo, Elena, et al.
+2021, A&A, 655, A30, doi: 10.1051/0004-6361/202141497
+Carolan, S., Vidotto, A. A., Hazra, G., Villarreal D’Angelo,
+C., & Kubyshkina, D. 2021, Monthly Notices of the
+Royal Astronomical Society, 508, 6001,
+doi: 10.1093/mnras/stab2947
+Casasayas-Barris, N., Pall´e, E., Yan, F., et al. 2018, A&A,
+616, A151, doi: 10.1051/0004-6361/201832963
+Chatzikos, M., Bianchi, S., Camilloni, F., et al. 2023,
+RMxAA, 59, 327,
+doi: 10.22201/ia.01851101p.2023.59.02.12
+Christie, D., Arras, P., & Li, Z.-Y. 2013, The Astrophysical
+Journal, 772, 144, doi: 10.1088/0004-637x/772/2/144
+Czesla, S., Lamp´on, M., Sanz-Forcada, J., et al. 2022,
+A&A, 657, A6, doi: 10.1051/0004-6361/202039919
+Dos Santos, L. A., Garc´ıa Mu˜noz, A., Sing, D. K., et al.
+2023, AJ, 166, 89, doi: 10.3847/1538-3881/ace445
+dos Santos, Leonardo A., Ehrenreich, David, Bourrier,
+Vincent, et al. 2020, A&A, 634, L4,
+doi: 10.1051/0004-6361/201937327
+Dos Santos, Leonardo A., Vidotto, Aline A., Vissapragada,
+Shreyas, et al. 2022, A&A, 659, A62,
+doi: 10.1051/0004-6361/202142038
+Draine, B. T. 2011, Physics of the Interstellar and
+Intergalactic Medium
+Ehrenreich, D., Bourrier, V., Wheatley, P. J., et al. 2015,
+Nature, 522, 459, doi: 10.1038/nature14501
+Ferland, G. J., Porter, R. L., van Hoof, P. A. M., et al.
+2013, RMxAA, 49, 137, doi: 10.48550/arXiv.1302.4485
+
+
+--- Page 15 ---
+15
+Table 4. Outflow Simulations Using Alternative XUV Spectra
+Planet
+Metallicity
+SNR He∗
+Depth
+SNR Hα
+Depth
+He Abs
+W
+Wobs
+Tpeak
+(× solar)
+(ppm)
+(ppm)
+(%)
+(m˚A)
+(m˚A)
+(K)
+HD 189733b
+0
+1.7
+190
+1.6
+250
+4.4
+29
+11
+13,400
+HD 189733b
+1
+1.7
+190
+1.1
+180
+2.7
+19
+11
+11,800
+HD 189733b
+10
+1.8
+210
+0.32
+44
+1.3
+10
+11
+10,300
+HD 189733b ‡
+0
+1.9
+610
+1.2
+180
+3.2
+22
+11
+11,600
+HD 209458b
+0
+0.19
+24
+0.41
+57
+0.66
+3.9
+3.7
+9,300
+HD 209458b
+1
+0.18
+23
+0.34
+44
+1.5
+9.3
+3.7
+8,400
+HD 209458b ‡
+0
+0.60
+76
+0.42
+58
+1.5
+9.1
+3.7
+8,800
+WASP-69b
+0
+0.15
+41
+0.19
+71
+9.0
+76
+29
+9,600
+WASP-69b
+1
+0.35
+170
+0.18
+76
+20
+220
+29
+7,900
+WASP-69b ‡
+0
+0.35
+96
+0.30
+110
+16
+160
+29
+9,300
+WASP-107b
+0
+4.0
+2100
+7.7×10−2
+62
+34
+510
+100
+8,600
+WASP-107b
+1
+3.8
+2000
+5.4×10−2
+42
+37
+540
+100
+8,500
+WASP-107b
+10
+3.5
+1800
+3.3×10−2
+22
+49
+610
+100
+7,800
+WASP-107b ‡
+0
+1.5
+740
+1.9×10−2
+25
+80
+610
+100
+6,100
+TOI-560b
+0
+0.15
+42
+4.2×10−3
+1.3
+9.6
+99
+7.8
+4,900
+TOI-560b
+100
+2.3×10−3
+0.61
+3.3×10−4
+0.10
+1.2
+8.5
+7.8
+4,800
+TOI-560b ‡
+0
+0.18
+51
+1.7×10−3
+0.54
+45
+280
+7.8
+4,100
+TOI-1430b
+0
+5.8×10−2
+14
+2.3×10−3
+0.72
+5.8
+66
+7.3
+5,100
+TOI-1430b
+100
+8.2×10−4
+0.19
+1.3×10−4
+0.034
+0.96
+7.4
+7.3
+4,600
+TOI-1430b ‡
+0
+2.4×10−3
+0.50
+1.2×10−3
+0.35
+17
+93
+7.3
+7,900
+HAT-P-32b
+0
+4.7
+2500
+2.4
+1400
+52
+470
+120
+4,400
+HAT-P-32b
+1
+27
+13000
+0.84
+450
+81
+630
+120
+6,100
+Note—Simulations with ‡ indicate 0◦illumination angle. These data are not the final results.
+France, K., Fleming, B., Youngblood, A., et al. 2022,
+Journal of Astronomical Telescopes, Instruments, and
+Systems, 8, 014006, doi: 10.1117/1.JATIS.8.1.014006
+Fu, G., Welbanks, L., Deming, D., et al. 2024, Nature, 632,
+752, doi: 10.1038/s41586-024-07760-y
+Fulton, B. J., & Petigura, E. A. 2018, AJ, 156, 264,
+doi: 10.3847/1538-3881/aae828
+Fulton, B. J., Petigura, E. A., Howard, A. W., et al. 2017,
+The Astronomical Journal, 154, 109,
+doi: 10.3847/1538-3881/aa80eb
+Gibson, S. R., Howard, A. W., Rider, K., et al. 2024, in
+Ground-based and Airborne Instrumentation for
+Astronomy X, ed. J. J. Bryant, K. Motohara, & J. R. D.
+Vernet, Vol. 13096, International Society for Optics and
+Photonics (SPIE), 1309609, doi: 10.1117/12.3017841
+Guilluy, G., D’Arpa, M. C., Bonomo, A. S., et al. 2024,
+A&A, 686, A83, doi: 10.1051/0004-6361/202348997
+Hotnisky, A., Kanodia, S., Libby-Roberts, J., et al. 2024,
+Searching for GEMS: Two Super-Jupiters around
+M-dwarfs – Signatures of Instability or Accretion?
+https://arxiv.org/abs/2411.08159
+Husser, T.-O., Wende-von Berg, S., Dreizler, S., et al. 2013,
+Astronomy & Astrophysics, 553, A6,
+doi: 10.1051/0004-6361/201219058
+Jensen, A. G., Redfield, S., Endl, M., et al. 2012, The
+Astrophysical Journal, 751, 86,
+doi: 10.1088/0004-637X/751/2/86
+Johnstone, C. P., G¨udel, M., Lammer, H., & Kislyakova,
+K. G. 2018, A&A, 617, A107,
+doi: 10.1051/0004-6361/201832776
+Kanodia, S., Gupta, A. F., Ca˜nas, C. I., et al. 2024, AJ,
+168, 235, doi: 10.3847/1538-3881/ad7796
+Kirk, J., Alam, M. K., L´opez-Morales, M., & Zeng, L. 2020,
+AJ, 159, 115, doi: 10.3847/1538-3881/ab6e66
+
+
+--- Page 16 ---
+16
+Kubyshkina, D., Fossati, L., & Erkaev, N. V. 2023, Precise
+photoionisation treatment and hydrodynamic effects in
+atmospheric modelling of warm and hot Neptunes.
+https://arxiv.org/abs/2312.07236
+Lamp´on, M., L´opez-Puertas, M., Czesla, S., et al. 2021,
+A&A, 648, L7, doi: 10.1051/0004-6361/202140423
+Lamp´on, M., L´opez-Puertas, M., Sanz-Forcada, J., et al.
+2021, Astronomy & Astrophysics, 647, A129,
+doi: 10.1051/0004-6361/202039417
+Lamp´on, M., L´opez-Puertas, M., Lara, L. M., et al. 2020,
+A&A, 636, A13, doi: 10.1051/0004-6361/201937175
+Lamp´on, M., L´opez-Puertas, M., Sanz-Forcada, J., et al.
+2023, A&A, 673, A140,
+doi: 10.1051/0004-6361/202245649
+Lecavelier Des Etangs, A., Ehrenreich, D., Vidal-Madjar,
+A., et al. 2010, A&A, 514, A72,
+doi: 10.1051/0004-6361/200913347
+Linssen, D., Shih, J., MacLeod, M., & Oklopˇci´c, A. 2024,
+arXiv e-prints, arXiv:2404.12775,
+doi: 10.48550/arXiv.2404.12775
+Linssen, D. C., Oklopˇci´c, A., & MacLeod, M. 2022, A&A,
+667, A54, doi: 10.1051/0004-6361/202243830
+McLean, I. S., Becklin, E. E., Bendiksen, O., et al. 1998, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 3354, Infrared
+Astronomical Instrumentation, ed. A. M. Fowler,
+566–578, doi: 10.1117/12.317283
+Mignone, A., Bodo, G., Massaglia, S., et al. 2007, ApJS,
+170, 228, doi: 10.1086/513316
+Moˇcnik, T., Hellier, C., Anderson, D. R., Clark, B. J. M., &
+Southworth, J. 2017, MNRAS, 469, 1622,
+doi: 10.1093/mnras/stx972
+Murray-Clay, R. A., Chiang, E. I., & Murray, N. 2009,
+ApJ, 693, 23, doi: 10.1088/0004-637X/693/1/23
+Nortmann, L., Pall´e, E., Salz, M., et al. 2018, Science, 362,
+1388, doi: 10.1126/science.aat5348
+Oklopˇci´c, A. 2019, ApJ, 881, 133,
+doi: 10.3847/1538-4357/ab2f7f
+Oklopˇci´c, A., & Hirata, C. M. 2018, ApJL, 855, L11,
+doi: 10.3847/2041-8213/aaada9
+Orell-Miquel, J., Murgas, F., Pall´e, E., et al. 2024, arXiv
+e-prints, arXiv:2404.16732,
+doi: 10.48550/arXiv.2404.16732
+Owen, J. E., & Adams, F. C. 2019, Monthly Notices of the
+Royal Astronomical Society, 490, 15,
+doi: 10.1093/mnras/stz2601
+Owen, J. E., & Schlichting, H. E. 2023, Mapping out the
+parameter space for photoevaporation and core-powered
+mass-loss. https://arxiv.org/abs/2308.00020
+Owen, J. E., & Wu, Y. 2013, ApJ, 775, 105,
+doi: 10.1088/0004-637X/775/2/105
+Salz, M., Banerjee, R., Mignone, A., et al. 2015, Astronomy
+& Astrophysics, 576, A21,
+doi: 10.1051/0004-6361/201424330
+Salz, M., Czesla, S., Schneider, P. C., & Schmitt,
+J. H. M. M. 2016, A&A, 586, A75,
+doi: 10.1051/0004-6361/201526109
+Salz, M., Czesla, S., Schneider, P. C., et al. 2018, A&A,
+620, A97, doi: 10.1051/0004-6361/201833694
+Sanz-Forcada, J., Lopez-Puertas, M., Lamp’on, M., et al.
+2025, Astronomy & Astrophysics,
+doi: 10.1051/0004-6361/202451680
+Schreyer, E., Owen, J. E., Spake, J. J., Bahroloom, Z., &
+Di Giampasquale, S. 2023, Monthly Notices of the Royal
+Astronomical Society, 527, 5117,
+doi: 10.1093/mnras/stad3528
+Seager, S., & Sasselov, D. D. 2000, ApJ, 537, 916,
+doi: 10.1086/309088
+Spake, J. J., Sing, D. K., Evans, T. M., et al. 2018, Nature,
+557, 68, doi: 10.1038/s41586-018-0067-5
+Stassun, K. G., Collins, K. A., & Gaudi, B. S. 2017, AJ,
+153, 136, doi: 10.3847/1538-3881/aa5df3
+Vidal-Madjar, A., Lecavelier des Etangs, A., D´esert, J. M.,
+et al. 2003, Nature, 422, 143, doi: 10.1038/nature01448
+Wang, L., & Dai, F. 2021, ApJ, 914, 98,
+doi: 10.3847/1538-4357/abf1ee
+Wang, Y.-H., Wang, S., Hinse, T. C., et al. 2019, AJ, 157,
+82, doi: 10.3847/1538-3881/aaf6b6
+Wolfgang, A., Rogers, L. A., & Ford, E. B. 2016, ApJ, 825,
+19, doi: 10.3847/0004-637X/825/1/19
+Xue, Q., Bean, J. L., Zhang, M., et al. 2024, The
+Astrophysical Journal Letters, 963, L5,
+doi: 10.3847/2041-8213/ad2682
+Yoshida, T., Terada, N., & Kuramoto, K. 2024, Progress in
+Earth and Planetary Science, 11,
+doi: 10.1186/s40645-024-00666-3
+Zhang, M., Cauley, P. W., Knutson, H. A., et al. 2022a,
+The Astronomical Journal, 164, 237,
+doi: 10.3847/1538-3881/ac9675
+Zhang, M., Dai, F., Bean, J. L., Knutson, H. A., &
+Rescigno, F. 2023, ApJL, 953, L25,
+doi: 10.3847/2041-8213/aced51
+Zhang, M., Knutson, H. A., Dai, F., et al. 2023, The
+Astronomical Journal, 165, 62,
+doi: 10.3847/1538-3881/aca75b
+Zhang, M., Knutson, H. A., Wang, L., Dai, F., & Barrag´an,
+O. 2022b, The Astronomical Journal, 163, 67,
+doi: 10.3847/1538-3881/ac3fa7
+
+
+--- Page 17 ---
+17
+Zhang, M., & Rosener, R. 2024, pyTPCI (Zenodo),
+doi: 10.5281/ZENODO.14285142
+Zhang, M., Knutson, H. A., Wang, L., et al. 2022c, The
+Astronomical Journal, 163, 68,
+doi: 10.3847/1538-3881/ac3f3b
+Zhang, M., Bean, J. L., Wilson, D., et al. 2024,
+Constraining atmospheric composition from the outflow:
+helium observations reveal the fundamental properties of
+two planets straddling the radius gap.
+https://arxiv.org/abs/2409.08318
+Zhang, M., Bean, J. L., Wilson, D., et al. 2024, arXiv
+e-prints, arXiv:2409.08318,
+doi: 10.48550/arXiv.2409.08318
+Zhang, Y., Snellen, I. A. G., Molli`ere, P., et al. 2020, A&A,
+641, A161, doi: 10.1051/0004-6361/202038412
+

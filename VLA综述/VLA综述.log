@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.30)  19 FEB 2026 18:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.30)  21 FEB 2026 21:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1006,10 +1006,66 @@ C70/rm/m/n/12/30 ^^B| \OT1/cmr/m/n/12 Gemini Robotics\C70/rm/m/n/12/76 Ñ
  []
 
 
+LaTeX Warning: Citation `rdt2' on page 5 undefined on input line 124.
+
+
+Overfull \hbox (9.45865pt too wide) in paragraph at lines 124--125
+[]\OT1/cmr/m/n/12 RDT2 [\OT1/cmr/bx/n/12 ?\OT1/cmr/m/n/12 ]\C70/rm/m/n/12/66 / 
+\C70/rm/m/n/12/99 ñ \C70/rm/m/n/12/4e * \C70/rm/m/n/12/63 ¢ \C70/rm/m/n/12/7d "
+\OT1/cmr/m/n/12 UMI |\C70/rm/m/n/12/ff ^^H|\OT1/cmr/m/n/12 Universal Ma-nip-u-l
+a-tion In-ter-face|\C70/rm/m/n/12/ff 	| \C70/rm/m/n/12/65 p \C70/rm/m/n/12/63 n
+ \C70/rm/m/n/12/62 i \C70/rm/m/n/12/5c U \C70/rm/m/n/12/67 Å \C70/rm/m/n/12/96 
+P \C70/rm/m/n/12/76 Ñ\OT1/cmr/m/n/12 VLA\C70/rm/m/n/12/6a !
+ []
+
+
+LaTeX Warning: Citation `holobrain0' on page 5 undefined on input line 130.
+
+
+Overfull \hbox (3.86557pt too wide) in paragraph at lines 132--133
+\C70/rm/bx/n/12/8b Ì \C70/rm/bx/n/12/8a ^^@ \C70/rm/bx/n/12/6a ! \C70/rm/bx/n/1
+2/57 ã|\C70/rm/m/n/12/ff ^^Z| \C70/rm/m/n/12/59 ^^D \C70/rm/m/n/12/74 ^^F \C70/
+rm/m/n/12/81 Í \C70/rm/m/n/12/71 6 \C70/rm/m/n/12/8b Ì \C70/rm/m/n/12/8a ^^@ \C
+70/rm/m/n/12/63 ^^G \C70/rm/m/n/12/4e ‰|\C70/rm/m/n/12/ff ^^[||^^H|\OT1/cmr/m/n
+/12 3|\C70/rm/m/n/12/ff 	| \C70/rm/bx/n/12/51 w \C70/rm/bx/n/12/8e ´ \C70/rm/bx
+/n/12/51 H \C70/rm/bx/n/12/9a å \C70/rm/bx/n/12/6a ! \C70/rm/bx/n/12/57 W|\C70/
+rm/m/n/12/ff ^^Z| \C70/rm/m/n/12/6c Ë \C70/rm/m/n/12/51 e \C70/rm/m/n/12/67 : \
+C70/rm/m/n/12/56 h \C70/rm/m/n/12/4e ∫ \C70/rm/m/n/12/8f – \C70/rm/m/n/12/52 ® 
+\C70/rm/m/n/12/5b f \C70/rm/m/n/12/54 å \C70/rm/m/n/12/7a z \C70/rm/m/n/12/95 Ù
+ \C70/rm/m/n/12/7e ¶ \C70/rm/m/n/12/67 _|\C70/rm/m/n/12/ff ^^[||^^H|\OT1/cmr/m/
+n/12 4|\C70/rm/m/n/12/ff 	|
+ []
+
+
+
+[5]
+
+LaTeX Warning: Citation `irevla' on page 6 undefined on input line 136.
+
+
+Overfull \hbox (6.2923pt too wide) in paragraph at lines 136--137
+\C70/rm/m/n/12/52 6 \C70/rm/m/n/12/5b û \C70/rm/m/n/12/73 ∞ \C70/rm/m/n/12/4e Ü
+ \C70/rm/m/n/12/9a ÿ \C70/rm/m/n/12/65 H \C70/rm/m/n/12/7a 3 \C70/rm/m/n/12/5b 
+ö \C70/rm/m/n/12/76 Ñ\OT1/cmr/m/n/12 RL\C70/rm/m/n/12/5f Æ \C70/rm/m/n/12/8c ^^
+C|\C70/rm/m/n/12/30 ^^B| \OT1/cmr/m/n/12 iRe-VLA\C70/rm/m/n/12/76 Ñ \C70/rm/m/n
+/12/68 8 \C70/rm/m/n/12/5f √ \C70/rm/m/n/12/52 ^^[ \C70/rm/m/n/12/65 ∞ \C70/rm/
+m/n/12/53 ^^E \C70/rm/m/n/12/62 Ï|\C70/rm/m/n/12/ff ^^Z||^^H|\OT1/cmr/m/n/12 1|
+\C70/rm/m/n/12/ff 	| \C70/rm/m/n/12/63 – \C70/rm/m/n/12/51 ˙ \C70/rm/m/n/12/4e 
+Ü \C70/rm/m/n/12/7a 3 \C70/rm/m/n/12/5b ö \C70/rm/m/n/12/56 h |\C70/rm/m/n/12/f
+f ^^H|\OT1/cmr/m/n/12 Stabilizer|\C70/rm/m/n/12/ff 	|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+[]\C70/rm/m/n/10.95/5f : \C70/rm/m/n/10.95/53 ^^V \C70/rm/m/n/10.95/5b f \C70/r
+m/m/n/10.95/4e `\OT1/cmr/m/n/10.95 +\C70/rm/m/n/10.95/7a 3
+ []
+
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (7.48892pt too wide) in paragraph at lines 151--152
+Overfull \hbox (7.48892pt too wide) in paragraph at lines 173--174
 []\C70/rm/m/n/12/4e Œ \C70/rm/m/n/12/88 h[]\OT1/cmr/m/n/12 1[]\C70/rm/m/n/12/53
  Ô \C70/rm/m/n/12/4e Â \C70/rm/m/n/12/77  \C70/rm/m/n/12/51 ˙|\C70/rm/m/n/12/f
 f ^^L| \OT1/cmr/m/n/12 VLA\C70/rm/m/n/12/6a ! \C70/rm/m/n/12/57 ã \C70/rm/m/n/1
@@ -1022,20 +1078,60 @@ C70/rm/m/n/12/4e ; \C70/rm/m/n/12/89 Å \C70/rm/m/n/12/4f ^^? \C70/rm/m/n/12/75
  []
 
 
-Overfull \hbox (9.1799pt too wide) in paragraph at lines 160--178
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+[]\C70/rm/m/n/10.95/65 p \C70/rm/m/n/10.95/63 n \C70/rm/m/n/10.95/97 ^^@
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--188
+[]\C70/rm/m/n/10.95/7f Q \C70/rm/m/n/10.95/7e ‹ \C70/rm/m/n/10.95/65 p
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--188
+\C70/rm/m/n/10.95/63 n\OT1/cmr/m/n/10.95 +\C70/rm/m/n/10.95/67 : \C70/rm/m/n/10
+.95/56 h \C70/rm/m/n/10.95/4e ∫
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+[]\OT1/cmr/m/n/10.95 10000+\C70/rm/m/n/10.95/5c ^^O
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+[]\C70/rm/m/n/10.95/4e 	 \C70/rm/m/n/10.95/96 6 \C70/rm/m/n/10.95/6b µ \C70/rm/
+m/n/10.95/8b ≠ \C70/rm/m/n/10.95/7e √
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+|\C70/rm/m/n/10.95/ff ^^H|\OT1/cmr/m/n/10.95 RVQ+\C70/rm/m/n/10.95/6d A \C70/rm
+/m/n/10.95/53 9
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+Underfull \hbox (badness 1478) in paragraph at lines 232--232
+[]\C70/rm/m/n/10.95/96 ˆ \C70/rm/m/n/10.95/68 7 \C70/rm/m/n/10.95/67 , \C70/rm/
+m/n/10.95/8d Ë \C70/rm/m/n/10.95/51 w \C70/rm/m/n/10.95/8e ´
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--232
+[]\C70/rm/m/n/10.95/5b û \C70/rm/m/n/10.95/65 ˆ |\C70/rm/m/n/10.95/ff ^^H|\C70/
+rm/m/n/10.95/84 ∏
+ []
+
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[5]
-Overfull \hbox (17.89867pt too wide) in paragraph at lines 215--216
+[6]
+Overfull \hbox (17.89867pt too wide) in paragraph at lines 245--246
 []\OT1/cmr/m/n/12 VLA\C70/rm/m/n/12/6a ! \C70/rm/m/n/12/57 ã ( \C70/rm/m/n/12/5
 b ∂ \C70/rm/m/n/12/5e ≠ \C70/rm/m/n/12/67 ^^M \C70/rm/m/n/12/52 ° \C70/rm/m/n/1
 2/67 : \C70/rm/m/n/12/56 h \C70/rm/m/n/12/4e ∫ - \C70/rm/m/n/12/76 Ñ \C70/rm/m/
@@ -1050,14 +1146,14 @@ rm/m/n/12/4e ˚ \C70/rm/m/n/12/52 °|\C70/rm/m/n/12/ff ^^[||^^H|\OT1/cmr/m/n/12 3
 
 
 
-[6
+[7
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.224 
+l.254 
       ]
-Overfull \hbox (5.89867pt too wide) in paragraph at lines 227--228
+Overfull \hbox (5.89867pt too wide) in paragraph at lines 257--258
 []\OT1/cmr/m/n/12 VLA\C70/rm/m/n/12/6a ! \C70/rm/m/n/12/57 ã ( \C70/rm/m/n/12/6
 5 Y \C70/rm/m/n/12/80 ≤ \C70/rm/m/n/12/5c U \C70/rm/m/n/12/79 : \C70/rm/m/n/12/
 67 : \C70/rm/m/n/12/56 h \C70/rm/m/n/12/4e ∫ - \C70/rm/m/n/12/76 Ñ \C70/rm/m/n/
@@ -1071,14 +1167,22 @@ m/n/12/5b f \C70/rm/m/n/12/8f Ö \C70/rm/m/n/12/52 ©|\C70/rm/m/n/12/ff ^^[||^^H|
 
 
 
-[7
+[8
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.238 
+l.262 
       ]
-Overfull \hbox (6.02373pt too wide) in paragraph at lines 247--248
+
+[9
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.272 
+      ]
+Overfull \hbox (6.02373pt too wide) in paragraph at lines 277--278
 []\OT1/cmr/m/n/12 VLA\C70/rm/m/n/12/62 Ä \C70/rm/m/n/12/67 / \C70/rm/m/n/12/76 
 Ñ \C70/rm/m/n/12/68 8 \C70/rm/m/n/12/5f √ \C70/rm/m/n/12/52 ^^[ \C70/rm/m/n/12/
 65 ∞ \C70/rm/m/n/12/53 ^^E \C70/rm/m/n/12/62 Ï|\C70/rm/m/n/12/ff ^^Z||^^H|\OT1/
@@ -1092,7 +1196,7 @@ m/n/12/8b ≠ \C70/rm/m/n/12/7e √|\C70/rm/m/n/12/ff ^^[||^^H|\OT1/cmr/m/n/12 2|\C
  []
 
 
-Overfull \hbox (3.86557pt too wide) in paragraph at lines 247--248
+Overfull \hbox (3.86557pt too wide) in paragraph at lines 277--278
 \C70/rm/m/n/12/8d Ë \C70/rm/m/n/12/51 w \C70/rm/m/n/12/8e ´ \C70/rm/m/n/12/5b f
  \C70/rm/m/n/12/4e `|\C70/rm/m/n/12/ff ^^L| \C70/rm/m/n/12/5b û \C70/rm/m/n/12/
 73 ∞ \C70/rm/m/n/12/4e Ü \C70/rm/m/n/12/8d Ë \C70/rm/m/n/12/5e s \C70/rm/m/n/12
@@ -1106,58 +1210,56 @@ m/m/n/12/65 ‡ \C70/rm/m/n/12/68 ^^G \C70/rm/m/n/12/7b ~ \C70/rm/m/n/12/65 p \C7
 /m/n/12/ff 	|
  []
 
+(./VLAÁªºËø∞.bbl
 
+[10]
 
-[8
-pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.248 
-      ] (./VLAÁªºËø∞.bbl
+[11])
 
-[9])
-
-[10] (./VLAÁªºËø∞.aux)
+[12] (./VLAÁªºËø∞.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/07/14>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `VLAÁªºËø∞.out' has not changed.
-(rerunfilecheck)             Checksum: 259BF7F68594CF359189C962A1C57506;3832.
+(rerunfilecheck)             Checksum: 372FAAE99E4891BD5AE21EC55A26734F;4347.
  ) 
 Here is how much of TeX's memory you used:
- 16021 strings out of 467748
- 263124 string characters out of 5423844
- 684932 words of memory out of 5000000
- 43994 multiletter control sequences out of 15000+600000
- 715806 words of font info for 364 fonts, out of 8000000 for 9000
+ 16109 strings out of 467748
+ 264708 string characters out of 5423844
+ 696932 words of memory out of 5000000
+ 44060 multiletter control sequences out of 15000+600000
+ 720127 words of font info for 380 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,9n,83p,842b,587s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,11n,83p,1028b,589s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/s
 imhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows
 /Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:
 /Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei
-.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
-s/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Wind
-ows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf>
+.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Font
+s/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Wind
+ows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf>
 <c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
 hei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
-onts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/W
-indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
-tc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
-simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
-s/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c
-:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhe
-i.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
-ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Win
-dows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc
-><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/si
+onts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/W
+indows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
+tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
+simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Window
+s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c
+:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhe
+i.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
+ts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Win
+dows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf
+><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/si
 mhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/
 Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/
-Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.
-ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts
-/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windo
+Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.
+ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts
+/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windo
 ws/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><
 c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sims
 un.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fo
@@ -1175,24 +1277,24 @@ sun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
 onts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/W
 indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
 tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
-simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Window
+simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Window
 s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
 :/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
-n.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
+n.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
 ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Win
 dows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf
 ><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/si
 mhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/
 Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/
-Windows/Fonts/simhei.ttf><d:/program_files/texlive/2025/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmbx12.pfb><d:/program_files/texlive/2025/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><d:/program_files/texlive/2025/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr12.pfb><d:/program_files/texlive/2025/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on VLAÁªºËø∞.pdf (10 pages, 638391 bytes).
+Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><d:/program_files/texlive
+/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/program_files/te
+xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/program_file
+s/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><d:/program_
+files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on VLAÁªºËø∞.pdf (12 pages, 662415 bytes).
 PDF statistics:
- 881 PDF objects out of 1000 (max. 8388607)
- 644 compressed objects within 7 object streams
- 60 named destinations out of 1000 (max. 500000)
- 541 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 906 PDF objects out of 1000 (max. 8388607)
+ 666 compressed objects within 7 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 565 words of extra memory for PDF output out of 10000 (max. 10000000)
 
