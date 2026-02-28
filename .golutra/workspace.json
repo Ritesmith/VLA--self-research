@@ -1,0 +1,32 @@
+{
+  "inviteSkillSelections": {
+    "assistant": [
+      "D:\\Stazica\\my_files\\University_works\\self study\\VLA--self-research\\.golutra\\skills\\project-development-quality-maintainability"
+    ],
+    "member": [
+      "\\\\?\\D:\\Stazica\\my_files\\University_works\\self study\\VLA--self-research\\.golutra\\skills\\project-development-quality-maintainability"
+    ]
+  },
+  "memberSequence": {},
+  "members": [
+    {
+      "autoStartTerminal": false,
+      "avatar": "css:orbit",
+      "id": "01J00000000000000000000000",
+      "name": "群主",
+      "role": "",
+      "roleKey": "members.roles.owner",
+      "roleType": "owner",
+      "status": "online"
+    }
+  ],
+  "projectId": "e6368f8b9e0f911c0ad90d68fd57fc92be5b9bbb83a1c5e478daf75f509897a4",
+  "roadmap": {
+    "objective": "",
+    "tasks": []
+  },
+  "terminal": {
+    "recentClosedTabs": []
+  },
+  "version": 1
+}
